@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Karthik Reddy Changal | AI Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio website for Karthik Reddy Changal, AI/ML engineer experienced with multi-agent systems, LLM fine-tuning, and conversational automation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f5f6fb;
+        --surface: #ffffff;
+        --muted: #5f6368;
+        --text: #1f1f1f;
+        --accent: #2563eb;
+        --accent-strong: #1e40af;
+        --border: rgba(15, 23, 42, 0.1);
+        --shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1160px, calc(100% - 2.5rem));
+        margin: 0 auto;
+      }
+
+      header {
+        background: linear-gradient(135deg, #eef2ff, #dbeafe);
+        padding: clamp(2.5rem, 6vw, 5rem) 0;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        padding: 0;
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem, 6vw, 3.8rem);
+        margin: 0 0 1rem;
+      }
+
+      .hero p {
+        margin: 0 0 1.2rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--accent);
+        font-weight: 600;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 0.85rem 1.6rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 150ms ease, box-shadow 150ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn.secondary {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--accent-strong);
+      }
+
+      .socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 0;
+        margin: 1.5rem 0 0;
+        list-style: none;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .socials a {
+        color: var(--accent-strong);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .stat-card {
+        background: var(--surface);
+        padding: 1.2rem 1.4rem;
+        border-radius: 1.2rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .stat-card h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .stat-card p {
+        margin: 0.15rem 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      main {
+        padding: clamp(2.5rem, 5vw, 4rem) 0 4rem;
+      }
+
+      section + section {
+        margin-top: clamp(2.8rem, 5vw, 4.2rem);
+      }
+
+      .section-heading {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-size: 2rem;
+      }
+
+      .section-heading p {
+        margin: 0.3rem 0 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .card small {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .pill {
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--accent-strong);
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 1rem;
+        color: var(--muted);
+      }
+
+      .list li {
+        margin-bottom: 0.3rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .skills-grid h4 {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+      }
+
+      .skills-grid p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .achievements {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .achievement {
+        background: var(--surface);
+        padding: 1.25rem 1.5rem;
+        border-radius: 1.1rem;
+        border-left: 4px solid var(--accent);
+        border-right: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .achievement h3 {
+        margin: 0 0 0.3rem;
+      }
+
+      .achievement span {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+      }
+
+      .contact-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 1rem;
+      }
+
+      .contact-card {
+        background: var(--surface);
+        padding: 1.3rem;
+        border-radius: 1rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      footer {
+        padding: 2rem 0 3rem;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      @media (max-width: 640px) {
+        nav ul {
+          flex-wrap: wrap;
+        }
+
+        .card {
+          padding: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <div class="container">
+        <nav>
+          <span class="tag">AI Engineer · Remote first</span>
+          <ul>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="hero">
+          <div>
+            <p class="tag">Currently Founding AI Engineer @ Aspireit</p>
+            <h1>Karthik Reddy Changal</h1>
+            <p>
+              AI/ML engineer shaping intelligent products end to end—from data engineering
+              and LLM fine-tuning to conversational orchestration. I specialize in building
+              multi-agent workflows, shippable prototypes, and production-grade automation
+              that measurably moves business metrics.
+            </p>
+            <div class="cta">
+              <a class="btn primary" href="mailto:karthikchangal39@gmail.com">Let's collaborate</a>
+              <a class="btn secondary" href="./Karthik_Changal_CV.pdf" download>Download CV</a>
+              <a class="btn secondary" href="tel:+919346096480">Call: +91&nbsp;93460&nbsp;96480</a>
+            </div>
+            <ul class="socials">
+              <li>
+                <strong>Email:</strong>
+                <a href="mailto:karthikchangal39@gmail.com">karthikchangal39@gmail.com</a>
+              </li>
+              <li>
+                <strong>LinkedIn:</strong>
+                <a href="https://www.linkedin.com/in/ckarthikr" target="_blank" rel="noreferrer noopener">/in/ckarthikr</a>
+              </li>
+              <li>
+                <strong>GitHub:</strong>
+                <a href="https://github.com/kikugo" target="_blank" rel="noreferrer noopener">@kikugo</a>
+              </li>
+              <li>
+                <strong>Kaggle:</strong>
+                <a href="https://www.kaggle.com/kikugo" target="_blank" rel="noreferrer noopener">kikugo</a>
+              </li>
+            </ul>
+          </div>
+          <div class="stats">
+            <div class="stat-card">
+              <h3>30% faster hiring</h3>
+              <p>Architected multi-feature AI backend at Aspireit.</p>
+            </div>
+            <div class="stat-card">
+              <h3>15% ↑ accuracy</h3>
+              <p>Fine-tuned LLMs for code generation at micro1.</p>
+            </div>
+            <div class="stat-card">
+              <h3>40% better engagement</h3>
+              <p>Launched conversational AI across messaging channels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="experience">
+        <div class="section-heading">
+          <h2>Experience</h2>
+          <p>Impact-focused roles across product startups and applied research.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <small>Apr 2024 – Present · Remote · Aspireit</small>
+            <h3>Founding AI Engineer</h3>
+            <ul class="list">
+              <li>Designed scalable AI-driven backend services powering a multi-feature talent platform.</li>
+              <li>Owned architecture decisions, coordinated remote contributors, and shipped production upgrades on a weekly cadence.</li>
+              <li>Cut recruitment cycle time by 30% and improved user satisfaction scores through continuous experimentation.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <small>Mar 2024 – Apr 2024 · Remote · micro1</small>
+            <h3>Freelance Software Engineer · AI/ML</h3>
+            <ul class="list">
+              <li>Fine-tuned high-parameter LLMs for code generation workloads using curated instruction datasets.</li>
+              <li>Improved generation accuracy by 15% while reducing training compute by 50% using prompt optimization and data pruning strategies.</li>
+              <li>Shipped evaluation harnesses to benchmark latency, hallucination, and unit-test coverage.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <small>Aug 2023 – Mar 2024 · Remote · KPVDR BOTSAPI</small>
+            <h3>AI Developer</h3>
+            <ul class="list">
+              <li>Built an LLM-powered assistant spanning WhatsApp and custom chat surfaces with retrieval-augmented responses.</li>
+              <li>Integrated NLP pipelines for intent detection, personalization, and proactive nudges.</li>
+              <li>Raised messaging efficiency by roughly 30–40% through automation of repetitive replies.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-heading">
+          <h2>Selected Projects</h2>
+          <p>Hands-on builds that showcase multi-agent thinking and real-time AI.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>MultiAgent AI App</h3>
+            <p>
+              Streamlit platform that orchestrates specialized agents for video intelligence, financial signal analysis, and document QA through a modular toolkit.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Python</span>
+              <span class="pill">Streamlit</span>
+              <span class="pill">Groq</span>
+              <span class="pill">ChromaDB</span>
+              <span class="pill">YFinance</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Voice Agent</h3>
+            <p>
+              Low-latency (&lt;500&nbsp;ms) conversational agent with swappable personas for interview practice and branded copilots, spanning speech-to-text, reasoning, and voice cloning.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Python</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">Next.js</span>
+              <span class="pill">LiveKit</span>
+              <span class="pill">Deepgram</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>CLI Tower Defense</h3>
+            <p>
+              Competitive Go-based tower defense sandbox where different LLM agents battle using the same ruleset—ideal for rapid benchmarking of reasoning strategies.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Go</span>
+              <span class="pill">OpenAI API</span>
+              <span class="pill">Gemini API</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-heading">
+          <h2>Skills & Stack</h2>
+          <p>Fluent across product engineering, data, and MLOps workflows.</p>
+        </div>
+        <div class="skills-grid card">
+          <div>
+            <h4>Programming</h4>
+            <p>Python, Go, MATLAB, R, Salesforce Apex, JavaScript</p>
+          </div>
+          <div>
+            <h4>Frameworks</h4>
+            <p>Flask, Django, LangChain, LangGraph, CrewAI, AutoGen</p>
+          </div>
+          <div>
+            <h4>Libraries</h4>
+            <p>TensorFlow, PyTorch, Transformers, Hugging Face, Agno</p>
+          </div>
+          <div>
+            <h4>Tools & Platforms</h4>
+            <p>Git, Docker, AWS, Power BI, Tableau, Hadoop, Apache Spark</p>
+          </div>
+          <div>
+            <h4>Databases</h4>
+            <p>MySQL, PostgreSQL, MongoDB, AWS Redshift, SQL Server</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="section-heading">
+          <h2>Education</h2>
+        </div>
+        <article class="card">
+          <small>2020 – 2024</small>
+          <h3>B.Tech · Electronics & Communication Engineering</h3>
+          <p>Padmasri Dr. B. V. Raju Institute of Technology</p>
+        </article>
+      </section>
+
+      <section id="achievements">
+        <div class="section-heading">
+          <h2>Achievements</h2>
+        </div>
+        <div class="achievements">
+          <article class="achievement">
+            <h3>Winner · Smart India Hackathon 2022</h3>
+            <span>National innovation program</span>
+            <p>Built a production-ready solution within 36 hours, combining LLM reasoning with precise integrations to solve civic workflow challenges.</p>
+          </article>
+          <article class="achievement">
+            <h3>Runner-up · MEDCUORE Tech Innovation Challenge 2023</h3>
+            <span>Healthcare & diagnostics</span>
+            <p>Prototyped an AI assistant that synthesizes medical insights and patient data, showcasing safe automation in regulated environments.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-heading">
+          <h2>Contact</h2>
+          <p>Remote-friendly, open to founding teams, research labs, and bold product bets.</p>
+        </div>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <h4>Email</h4>
+            <a href="mailto:karthikchangal39@gmail.com">karthikchangal39@gmail.com</a>
+          </div>
+          <div class="contact-card">
+            <h4>Phone</h4>
+            <a href="tel:+919346096480">+91 93460 96480</a>
+          </div>
+          <div class="contact-card">
+            <h4>Location</h4>
+            <p>India · Open to global remote roles</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          Designed & built by Karthik Reddy Changal ·
+          <a href="#top">Back to top</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
