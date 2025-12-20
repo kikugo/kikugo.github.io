@@ -1,4 +1,5 @@
 {
   "buildCommand": null,
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "nodeVersion": "24.x"
 }
