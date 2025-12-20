@@ -120,15 +120,36 @@
     .work-header, .edu-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       margin-bottom: 0.25rem;
       gap: 1rem;
+    }
+
+    .work-header-left, .edu-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .company-logo, .school-logo {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.375rem;
+      object-fit: contain;
+      background: var(--surface);
+      padding: 0.25rem;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
     }
 
     .work-header h3, .edu-header h3 {
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--text);
+      min-width: 0;
+      flex: 1;
     }
 
     .work-header time, .edu-header time {
@@ -440,35 +461,44 @@
       
       <div class="work-item">
         <div class="work-header">
-          <h3>Aspireit</h3>
+          <div class="work-header-left">
+            <img src="https://logo.clearbit.com/aspireit.com" alt="Aspireit" class="company-logo" onerror="this.src='https://ui-avatars.com/api/?name=Aspireit&background=1a1a1a&color=fff&size=128'">
+            <h3>Aspireit</h3>
+          </div>
           <time>Apr 2024 - Present</time>
-                  </div>
+        </div>
         <div class="work-title">Founding AI Engineer</div>
         <div class="work-desc">
-                Designed scalable AI-driven backend services and cut recruitment cycle time by 30%.
-              </div>
-            </div>
+          Designed scalable AI-driven backend services and cut recruitment cycle time by 30%.
+        </div>
+      </div>
 
       <div class="work-item">
         <div class="work-header">
-          <h3>micro1</h3>
+          <div class="work-header-left">
+            <img src="https://logo.clearbit.com/micro1.ai" alt="micro1" class="company-logo" onerror="this.src='https://ui-avatars.com/api/?name=micro1&background=1a1a1a&color=fff&size=128'">
+            <h3>micro1</h3>
+          </div>
           <time>Mar 2024 - Apr 2024</time>
-                  </div>
+        </div>
         <div class="work-title">Freelance Software Engineer</div>
         <div class="work-desc">
-                Fine-tuned high-parameter LLMs for code generation, improving accuracy by 15%.
-              </div>
-            </div>
+          Fine-tuned high-parameter LLMs for code generation, improving accuracy by 15%.
+        </div>
+      </div>
 
       <div class="work-item">
         <div class="work-header">
-          <h3>KPVDR BOTSAPI</h3>
+          <div class="work-header-left">
+            <img src="https://ui-avatars.com/api/?name=KPVDR&background=1a1a1a&color=fff&size=128&bold=true" alt="KPVDR BOTSAPI" class="company-logo">
+            <h3>KPVDR BOTSAPI</h3>
+          </div>
           <time>Aug 2023 - Mar 2024</time>
-                  </div>
+        </div>
         <div class="work-title">AI Developer</div>
         <div class="work-desc">
-                Built an LLM-powered assistant spanning WhatsApp and custom chat surfaces.
-              </div>
+          Built an LLM-powered assistant spanning WhatsApp and custom chat surfaces.
+        </div>
       </div>
     </section>
 
@@ -477,7 +507,10 @@
       <h2>education</h2>
       <div class="edu-item">
         <div class="edu-header">
-          <h3>Padmasri Dr. B. V. Raju Institute of Technology</h3>
+          <div class="edu-header-left">
+            <img src="https://bvrit.ac.in/h/wp-content/uploads/2024/03/bv-raju-logo-01.svg" alt="BVRIT" class="school-logo" onerror="this.src='https://ui-avatars.com/api/?name=BVRIT&background=1a1a1a&color=fff&size=128&bold=true'">
+            <h3>Padmasri Dr. B. V. Raju Institute of Technology</h3>
+          </div>
           <time>2020 - 2024</time>
         </div>
         <div class="edu-degree">B.Tech · Electronics & Communication Engineering</div>
