@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Karthik | AI Engineer</title>
-  <meta name="description" content="Portfolio of Karthik – AI/ML Engineer specializing in multi-agent systems, LLM fine-tuning, and conversational AI.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+  <meta name="description"
+    content="Portfolio of Karthik – AI/ML Engineer specializing in multi-agent systems, LLM fine-tuning, and conversational AI.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +18,7 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     :root {
       --bg: #0a0a0a;
       --surface: #141414;
@@ -24,7 +27,7 @@
       --muted: #a3a3a3;
       --accent: #ffffff;
     }
-    
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -45,17 +48,37 @@
       opacity: 0;
       animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    
+
     @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
-    section:nth-child(1) { animation-delay: 0.1s; }
-    section:nth-child(2) { animation-delay: 0.2s; }
-    section:nth-child(3) { animation-delay: 0.3s; }
-    section:nth-child(4) { animation-delay: 0.4s; }
-    section:nth-child(5) { animation-delay: 0.5s; }
-    section:nth-child(6) { animation-delay: 0.6s; }
+
+    section:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    section:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    section:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    section:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    section:nth-child(6) {
+      animation-delay: 0.6s;
+    }
 
     .hero {
       display: flex;
@@ -109,15 +132,18 @@
       margin-bottom: 1rem;
     }
 
-    .work-item, .edu-item {
+    .work-item,
+    .edu-item {
       margin-bottom: 1.5rem;
     }
 
-    .work-item:last-child, .edu-item:last-child {
+    .work-item:last-child,
+    .edu-item:last-child {
       margin-bottom: 0;
     }
 
-    .work-header, .edu-header {
+    .work-header,
+    .edu-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -125,7 +151,8 @@
       gap: 1rem;
     }
 
-    .work-header-left, .edu-header-left {
+    .work-header-left,
+    .edu-header-left {
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -133,7 +160,8 @@
       min-width: 0;
     }
 
-    .company-logo, .school-logo {
+    .company-logo,
+    .school-logo {
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 0.375rem;
@@ -144,7 +172,8 @@
       flex-shrink: 0;
     }
 
-    .work-header h3, .edu-header h3 {
+    .work-header h3,
+    .edu-header h3 {
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--text);
@@ -152,14 +181,16 @@
       flex: 1;
     }
 
-    .work-header time, .edu-header time {
+    .work-header time,
+    .edu-header time {
       font-size: 0.75rem;
       color: var(--muted);
       white-space: nowrap;
       text-align: right;
     }
 
-    .work-title, .edu-degree {
+    .work-title,
+    .edu-degree {
       font-size: 0.75rem;
       color: var(--muted);
       margin-bottom: 0.5rem;
@@ -185,12 +216,12 @@
       border-radius: calc(0.5rem - 2px);
       background: var(--accent);
       color: var(--bg);
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       transition: background 0.15s;
     }
 
     .skill-tag:hover {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .projects {
@@ -219,7 +250,7 @@
     }
 
     .project-card:hover {
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     }
 
     .project-content {
@@ -308,12 +339,12 @@
       background: var(--accent);
       color: var(--bg);
       text-decoration: none;
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       transition: all 0.15s;
     }
 
     .email-btn:hover {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
     }
 
     /* Dock Navigation */
@@ -338,8 +369,6 @@
       height: 4rem;
       width: 100%;
       background: linear-gradient(to top, var(--bg), transparent);
-      -webkit-backdrop-filter: blur(16px);
-      backdrop-filter: blur(16px);
       pointer-events: none;
     }
 
@@ -351,11 +380,11 @@
       height: 100%;
       padding: 0.5rem;
       border-radius: 9999px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.5);
       -webkit-backdrop-filter: blur(24px);
       backdrop-filter: blur(24px);
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.05), 0 12px 24px rgba(0,0,0,0.05);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
       pointer-events: auto;
       gap: 0.25rem;
     }
@@ -375,17 +404,17 @@
     }
 
     .dock-item:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       transform: translateY(-8px) scale(1.3);
     }
 
     /* Adjacent sibling scaling for dock expansion effect */
-    .dock-item:hover + .dock-item,
+    .dock-item:hover+.dock-item,
     .dock-item:has(+ .dock-item:hover) {
       transform: translateY(-4px) scale(1.15);
     }
 
-    .dock-item:hover + .dock-item + .dock-item,
+    .dock-item:hover+.dock-item+.dock-item,
     .dock-item:has(+ .dock-item + .dock-item:hover) {
       transform: translateY(-2px) scale(1.05);
     }
@@ -428,9 +457,10 @@
     }
   </style>
 </head>
+
 <body>
   <main>
-    
+
     <!-- Hero Section -->
     <section id="hero">
       <div class="hero">
@@ -447,25 +477,47 @@
     <!-- About Section -->
     <section id="about">
       <h2>about</h2>
-        <p>
-          I'm a Founding AI Engineer at Aspireit, specializing in LLM orchestration, multi-agent architectures, and production ML systems.
-        </p>
-        <p>
-          Based in India, I craft intelligent automation that measurably moves business metrics. My work spans from fine-tuning high-parameter LLMs to building low-latency voice assistants.
-        </p>
+      <p>
+        I'm a Founding AI Engineer at Aspireit, specializing in LLM orchestration, multi-agent architectures, and
+        production ML systems.
+      </p>
+      <p>
+        Based in India, I craft intelligent automation that measurably moves business metrics. My work spans from
+        fine-tuning high-parameter LLMs to building low-latency voice assistants.
+      </p>
     </section>
 
     <!-- Experience Section -->
     <section id="work">
       <h2>work experience</h2>
-      
+
       <div class="work-item">
         <div class="work-header">
           <div class="work-header-left">
-            <img src="https://media.licdn.com/dms/image/v2/D560BAQHqE4h_F5VD5w/company-logo_200_200/company-logo_200_200/0/1714383156818/aspireit_logo?e=2147483647&v=beta&t=placeholder" alt="Aspireit" class="company-logo" onerror="this.src='https://ui-avatars.com/api/?name=Aspireit&background=4a90e2&color=fff&size=128&bold=true'">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4D0BAQEfs1IcIyD5CQ/company-logo_200_200/B4DZa7aGwiHEAM-/0/1746900907369/primeloop_ai_logo?e=1767830400&v=beta&t=Pi0Nj_lYQGUmhzgH1ZLpn9GyW4y1PmvqExdaPg_XQ4Q"
+              alt="PrimeloopAI" class="company-logo"
+              onerror="this.src='https://ui-avatars.com/api/?name=PL&background=6366f1&color=fff&size=128&bold=true'">
+            <h3>PrimeloopAI</h3>
+          </div>
+          <time>Apr 2025 - Jun 2025</time>
+        </div>
+        <div class="work-title">AI Automation Specialist</div>
+        <div class="work-desc">
+          Developed AI-powered automation solutions for clients, streamlining workflows.
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-header-left">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4D0BAQEuxA44X5L15g/company-logo_200_200/B4DZlJYVLPH4AM-/0/1757872739941/aspireai_official_logo?e=2147483647&v=beta&t=_q27JDWMZ7lmdq82QIS36PJAjOb1qR7ghvCvboRQuak"
+              alt="Aspireit" class="company-logo"
+              onerror="this.src='https://ui-avatars.com/api/?name=AI&background=4a90e2&color=fff&size=128&bold=true'">
             <h3>Aspireit</h3>
           </div>
-          <time>Apr 2024 - Present</time>
+          <time>Apr 2024 - Apr 2025</time>
         </div>
         <div class="work-title">Founding AI Engineer</div>
         <div class="work-desc">
@@ -476,12 +528,15 @@
       <div class="work-item">
         <div class="work-header">
           <div class="work-header-left">
-            <img src="https://media.licdn.com/dms/image/v2/C4E0BAQHy4JvKfVZhNQ/company-logo_200_200/company-logo_200_200/0/1631353080457?e=2147483647&v=beta&t=placeholder" alt="micro1" class="company-logo" onerror="this.src='https://ui-avatars.com/api/?name=micro1&background=00d4aa&color=fff&size=128&bold=true'">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D560BAQFSp7eWinmffw/company-logo_200_200/B56Zk8u8FtHcAI-/0/1757660562030/micro1_logo?e=2147483647&v=beta&t=DOwUbA4KC7TvMG-L5pGi1fXkdrpv2zGQSeZ9MpZTzmg"
+              alt="micro1" class="company-logo"
+              onerror="this.src='https://ui-avatars.com/api/?name=m1&background=00d4aa&color=fff&size=128&bold=true'">
             <h3>micro1</h3>
           </div>
           <time>Mar 2024 - Apr 2024</time>
         </div>
-        <div class="work-title">Freelance Software Engineer</div>
+        <div class="work-title">Software Engineer - AI/ML</div>
         <div class="work-desc">
           Fine-tuned high-parameter LLMs for code generation, improving accuracy by 15%.
         </div>
@@ -490,7 +545,9 @@
       <div class="work-item">
         <div class="work-header">
           <div class="work-header-left">
-            <img src="https://ui-avatars.com/api/?name=KPVDR&background=ff6b6b&color=fff&size=128&bold=true" alt="KPVDR BOTSAPI" class="company-logo">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4E0BAQEam7M5I2V19Q/company-logo_200_200/company-logo_200_200/0/1707847316314?e=2147483647&v=beta&t=RC_KfTLbp_5_H5daRSvd1KwmJzlRtCCnfikZZfp4-_0"
+              alt="KPVDR BOTSAPI" class="company-logo">
             <h3>KPVDR BOTSAPI</h3>
           </div>
           <time>Aug 2023 - Mar 2024</time>
@@ -508,17 +565,23 @@
       <div class="edu-item">
         <div class="edu-header">
           <div class="edu-header-left">
-            <img src="https://logo.clearbit.com/epita.fr" alt="EPITA" class="school-logo" onerror="this.src='https://ui-avatars.com/api/?name=EPITA&background=0066cc&color=fff&size=128&bold=true'">
+            <img
+              src="https://media.licdn.com/dms/image/v2/C4E0BAQGJssipFvd7IA/company-logo_200_200/company-logo_200_200/0/1631350838145?e=2147483647&v=beta&t=_qdmvsmLJczXfCRGr9Vj3jlMoAZLerHGrkIPP7NhXl4"
+              alt="EPITA" class="school-logo"
+              onerror="this.src='https://ui-avatars.com/api/?name=EPITA&background=0066cc&color=fff&size=128&bold=true'">
             <h3>EPITA · Le Kremlin-Bicêtre, Paris, France</h3>
           </div>
           <time>Sep 2025 - Present</time>
         </div>
-        <div class="edu-degree">Masters · Artificial Intelligence Systems</div>
+        <div class="edu-degree">M.Sc. · Artificial Intelligence Systems</div>
       </div>
       <div class="edu-item">
         <div class="edu-header">
           <div class="edu-header-left">
-            <img src="https://bvrit.ac.in/h/wp-content/uploads/2024/03/bv-raju-logo-01.svg" alt="BVRIT" class="school-logo" onerror="this.src='https://ui-avatars.com/api/?name=BVRIT&background=1a1a1a&color=fff&size=128&bold=true'">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D560BAQEcL9OvytcVvQ/company-logo_200_200/company-logo_200_200/0/1664451370985/bv_raju_institute_of_technology_bvrit__logo?e=2147483647&v=beta&t=51JUtVMXFNxkE0OWwQjE1v_1gwxanec1iCjLiK_uky8"
+              alt="BVRIT" class="school-logo"
+              onerror="this.src='https://ui-avatars.com/api/?name=BVRIT&background=1a1a1a&color=fff&size=128&bold=true'">
             <h3>Padmasri Dr. B. V. Raju Institute of Technology</h3>
           </div>
           <time>2020 - 2024</time>
@@ -566,12 +629,13 @@
     <section id="projects">
       <h2>projects</h2>
       <div class="projects">
-        
-        <a href="https://github.com/kikugo/MultiAgent-AI-App" target="_blank" rel="noopener noreferrer" class="project-card">
+
+        <a href="https://github.com/kikugo/MultiAgent-AI-App" target="_blank" rel="noopener noreferrer"
+          class="project-card">
           <div class="project-content">
             <h3>MultiAgent AI App</h3>
             <p>AI agents for video analysis, financial data & PDF Q&A.</p>
-            </div>
+          </div>
           <div class="project-tags">
             <span class="project-tag">Streamlit</span>
             <span class="project-tag">Gemini</span>
@@ -582,18 +646,19 @@
           <div class="project-content">
             <h3>Voice Agent</h3>
             <p>Low-latency voice assistant with customizable personas.</p>
-            </div>
+          </div>
           <div class="project-tags">
             <span class="project-tag">Python</span>
             <span class="project-tag">LiveKit</span>
           </div>
         </a>
 
-        <a href="https://github.com/kikugo/cli-tower-defense" target="_blank" rel="noopener noreferrer" class="project-card">
+        <a href="https://github.com/kikugo/cli-tower-defense" target="_blank" rel="noopener noreferrer"
+          class="project-card">
           <div class="project-content">
             <h3>CLI Tower Defense</h3>
             <p>Terminal game where LLMs compete in strategic battles.</p>
-            </div>
+          </div>
           <div class="project-tags">
             <span class="project-tag">Go</span>
             <span class="project-tag">OpenAI</span>
@@ -604,7 +669,7 @@
           <div class="project-content">
             <h3>Search-Wise</h3>
             <p>Semantic search engine with web scraping & clustering.</p>
-            </div>
+          </div>
           <div class="project-tags">
             <span class="project-tag">Python</span>
             <span class="project-tag">Transformers</span>
@@ -620,8 +685,8 @@
       <h2>Get in Touch</h2>
       <p>Interested in collaborating? Feel free to reach out.</p>
       <a class="email-btn" href="mailto:karthikchangal39@gmail.com">
-               karthikchangal39@gmail.com
-             </a>
+        karthikchangal39@gmail.com
+      </a>
     </section>
 
   </main>
@@ -630,35 +695,63 @@
   <div class="dock">
     <div class="dock-bg"></div>
     <div class="dock-container">
-      
+
       <a href="#hero" class="dock-item" title="Home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
       </a>
 
       <a href="#about" class="dock-item" title="About">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4" />
+          <path d="M12 8h.01" />
+        </svg>
       </a>
 
       <a href="#work" class="dock-item" title="Experience">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
       </a>
 
       <div class="dock-divider"></div>
 
       <a href="https://github.com/kikugo" target="_blank" rel="noopener noreferrer" class="dock-item" title="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
       </a>
 
-      <a href="https://www.linkedin.com/in/ckarthikr" target="_blank" rel="noopener noreferrer" class="dock-item" title="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      <a href="https://www.linkedin.com/in/ckarthikr" target="_blank" rel="noopener noreferrer" class="dock-item"
+        title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg>
       </a>
 
-      <a href="https://www.kaggle.com/kikugo" target="_blank" rel="noopener noreferrer" class="dock-item" title="Kaggle">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.071.312z"/></svg>
+      <a href="https://www.kaggle.com/kikugo" target="_blank" rel="noopener noreferrer" class="dock-item"
+        title="Kaggle">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.071.312z" />
+        </svg>
       </a>
 
       <a href="mailto:karthikchangal39@gmail.com" class="dock-item" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
       </a>
 
     </div>
@@ -669,21 +762,21 @@
     function updateAge() {
       const birthDate = new Date('2002-12-25T00:00:00');
       const now = new Date();
-      
+
       // Calculate age in milliseconds
       const ageInMs = now - birthDate;
-      
+
       // Convert to years with high precision
       const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
       const ageInYears = ageInMs / msPerYear;
-      
+
       // Format to 9 decimal places
       const ageElement = document.getElementById('age');
       if (ageElement) {
         ageElement.textContent = ageInYears.toFixed(9);
       }
     }
-    
+
     // Update age immediately and then every 100ms for smooth animation
     updateAge();
     setInterval(updateAge, 100);
@@ -701,4 +794,5 @@
   </script>
 
 </body>
+
 </html>
