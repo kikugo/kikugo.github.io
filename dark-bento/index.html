@@ -4,16 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Karthik Reddy Changal | AI Engineer</title>
-    <meta
-      name="description"
-      content="Portfolio of Karthik Reddy Changal – AI/ML Engineer specializing in multi-agent systems, LLM fine-tuning, and conversational AI."
-    />
+    <meta name="description" content="Portfolio of Karthik Reddy Changal – AI/ML Engineer specializing in multi-agent systems, LLM fine-tuning, and conversational AI." />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Karthik Reddy Changal | AI Engineer" />
+    <meta property="og:description" content="AI/ML Engineer building intelligent multi-agent systems and production ML pipelines." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    
     <style>
       :root {
         --bg: #0a0a0a;
@@ -42,6 +46,18 @@
         color: var(--text);
         line-height: 1.5;
         min-height: 100vh;
+        position: relative;
+      }
+
+      /* Subtle noise texture */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
       }
 
       a {
@@ -57,6 +73,8 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        position: relative;
+        z-index: 1;
       }
 
       /* Header */
@@ -131,15 +149,46 @@
         padding: 2.5rem;
       }
 
-      .hero-decor {
+      .hero-top {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: flex-start;
       }
 
       .hero-decor svg {
         width: 100px;
         height: 100px;
         opacity: 0.5;
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.05); opacity: 0.7; }
+      }
+
+      .cv-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        transition: all 0.2s;
+      }
+
+      .cv-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text);
+      }
+
+      .cv-btn svg {
+        width: 14px;
+        height: 14px;
       }
 
       .hero-card h1 {
@@ -238,21 +287,22 @@
         gap: 1rem;
       }
 
-      .project-card {
+      /* Featured Project Card */
+      a.project-card {
+        display: flex;
+        flex-direction: column;
         padding: 1.25rem;
       }
 
-      .project-card.featured {
+      a.project-card.featured {
         flex: 1;
-        display: flex;
-        flex-direction: column;
       }
 
       .project-card .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
       }
 
       .project-card h3 {
@@ -277,6 +327,13 @@
         stroke: var(--text);
       }
 
+      .project-card .desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+
       .project-thumb {
         flex: 1;
         background: linear-gradient(135deg, var(--accent-surface), #0d0d0d);
@@ -284,8 +341,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 140px;
-        margin-top: 0.5rem;
+        min-height: 100px;
         position: relative;
         overflow: hidden;
       }
@@ -299,20 +355,38 @@
       }
 
       .project-thumb span {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         z-index: 1;
       }
 
-      .project-item {
-        padding: 1rem 1.25rem;
-        border-bottom: 1px solid var(--border);
+      /* Project List Items */
+      .projects-list {
+        padding: 0;
       }
 
-      .project-item:last-child {
+      a.project-item {
+        display: block;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.2s;
+      }
+
+      a.project-item:last-child {
         border-bottom: none;
+      }
+
+      a.project-item:hover {
+        background: var(--surface-hover);
+      }
+
+      .project-item .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.25rem;
       }
 
       .project-item h4 {
@@ -320,28 +394,76 @@
         font-weight: 500;
       }
 
+      .project-item .mini-arrow {
+        width: 16px;
+        height: 16px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      a.project-item:hover .mini-arrow {
+        opacity: 0.6;
+      }
+
+      .project-item .mini-arrow svg {
+        width: 100%;
+        height: 100%;
+        stroke: var(--text);
+      }
+
+      .project-item .tech {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
       /* Social Links */
       .social-card {
-        padding: 1rem 1.25rem;
+        padding: 1.25rem;
       }
 
       .social-links {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
         justify-content: center;
       }
 
       .social-links a {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
         font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         color: var(--text-muted);
         transition: color 0.2s;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
       }
 
       .social-links a:hover {
         color: var(--accent);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .social-links svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       /* Responsive */
@@ -373,7 +495,7 @@
           flex-wrap: wrap;
         }
 
-        .project-card.featured {
+        a.project-card.featured {
           flex: 1 1 300px;
         }
 
@@ -409,6 +531,12 @@
           grid-row: auto;
         }
 
+        .hero-top {
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+        }
+
         .projects-sidebar {
           grid-column: 1;
           flex-direction: column;
@@ -416,6 +544,10 @@
 
         .hero-card {
           min-height: 300px;
+        }
+
+        .social-links {
+          flex-wrap: wrap;
         }
       }
 
@@ -457,26 +589,30 @@
       <main class="bento">
         <!-- Hero Card -->
         <article class="card hero-card">
-          <div class="hero-decor">
-            <svg viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="4" fill="#d4a574"/>
-              <circle cx="50" cy="30" r="2.5" fill="#d4a574"/>
-              <circle cx="50" cy="70" r="2.5" fill="#d4a574"/>
-              <circle cx="30" cy="50" r="2.5" fill="#d4a574"/>
-              <circle cx="70" cy="50" r="2.5" fill="#d4a574"/>
-              <circle cx="36" cy="36" r="2" fill="#d4a574"/>
-              <circle cx="64" cy="36" r="2" fill="#d4a574"/>
-              <circle cx="36" cy="64" r="2" fill="#d4a574"/>
-              <circle cx="64" cy="64" r="2" fill="#d4a574"/>
-              <circle cx="50" cy="15" r="1.5" fill="#d4a574"/>
-              <circle cx="50" cy="85" r="1.5" fill="#d4a574"/>
-              <circle cx="15" cy="50" r="1.5" fill="#d4a574"/>
-              <circle cx="85" cy="50" r="1.5" fill="#d4a574"/>
-              <circle cx="24" cy="24" r="1" fill="#d4a574"/>
-              <circle cx="76" cy="24" r="1" fill="#d4a574"/>
-              <circle cx="24" cy="76" r="1" fill="#d4a574"/>
-              <circle cx="76" cy="76" r="1" fill="#d4a574"/>
-            </svg>
+          <div class="hero-top">
+            <div class="hero-decor">
+              <svg viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="4" fill="#d4a574"/>
+                <circle cx="50" cy="30" r="2.5" fill="#d4a574"/>
+                <circle cx="50" cy="70" r="2.5" fill="#d4a574"/>
+                <circle cx="30" cy="50" r="2.5" fill="#d4a574"/>
+                <circle cx="70" cy="50" r="2.5" fill="#d4a574"/>
+                <circle cx="36" cy="36" r="2" fill="#d4a574"/>
+                <circle cx="64" cy="36" r="2" fill="#d4a574"/>
+                <circle cx="36" cy="64" r="2" fill="#d4a574"/>
+                <circle cx="64" cy="64" r="2" fill="#d4a574"/>
+                <circle cx="50" cy="15" r="1.5" fill="#d4a574"/>
+                <circle cx="50" cy="85" r="1.5" fill="#d4a574"/>
+                <circle cx="15" cy="50" r="1.5" fill="#d4a574"/>
+                <circle cx="85" cy="50" r="1.5" fill="#d4a574"/>
+              </svg>
+            </div>
+            <a href="../Karthik_Changal_CV.pdf" download class="cv-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+              Download CV
+            </a>
           </div>
           <h1>
             AI Engineer<br />
@@ -510,7 +646,8 @@
 
         <!-- Projects Sidebar -->
         <aside class="projects-sidebar" id="projects">
-          <article class="card project-card featured">
+          <!-- Featured Project -->
+          <a href="https://github.com/kikugo/agent_ai" target="_blank" rel="noreferrer noopener" class="card project-card featured">
             <div class="header">
               <h3>MultiAgent AI</h3>
               <span class="arrow">
@@ -519,32 +656,89 @@
                 </svg>
               </span>
             </div>
+            <p class="desc">AI agents for video analysis, finance & PDF querying</p>
             <div class="project-thumb">
               <span>Streamlit · Groq · ChromaDB</span>
             </div>
-          </article>
+          </a>
 
+          <!-- Project List -->
           <article class="card projects-list">
-            <div class="project-item">
-              <h4>Voice Agent</h4>
-            </div>
-            <div class="project-item">
-              <h4>CLI Tower Defense</h4>
-            </div>
-            <div class="project-item">
-              <h4>LLM Fine-tuning</h4>
-            </div>
+            <a href="https://github.com/kikugo/voice-agent" target="_blank" rel="noreferrer noopener" class="project-item">
+              <div class="item-header">
+                <h4>Voice Agent</h4>
+                <span class="mini-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
+              <span class="tech">Python · Next.js · LiveKit · Deepgram</span>
+            </a>
+            <a href="https://github.com/kikugo/cli-ai-tower-defence" target="_blank" rel="noreferrer noopener" class="project-item">
+              <div class="item-header">
+                <h4>CLI Tower Defense</h4>
+                <span class="mini-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
+              <span class="tech">Go · OpenAI API · Gemini</span>
+            </a>
+            <a href="https://github.com/kikugo" target="_blank" rel="noreferrer noopener" class="project-item">
+              <div class="item-header">
+                <h4>LLM Fine-tuning</h4>
+                <span class="mini-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
+              <span class="tech">Python · HuggingFace · LoRA</span>
+            </a>
           </article>
 
+          <!-- Social Links with Icons -->
           <article class="card social-card">
             <div class="social-links">
-              <a href="https://www.linkedin.com/in/ckarthikr" target="_blank" rel="noreferrer noopener">LinkedIn</a>
-              <a href="https://github.com/kikugo" target="_blank" rel="noreferrer noopener">GitHub</a>
-              <a href="https://www.kaggle.com/kikugo" target="_blank" rel="noreferrer noopener">Kaggle</a>
+              <a href="https://www.linkedin.com/in/ckarthikr" target="_blank" rel="noreferrer noopener">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+              </a>
+              <a href="https://github.com/kikugo" target="_blank" rel="noreferrer noopener">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+              <a href="https://www.kaggle.com/kikugo" target="_blank" rel="noreferrer noopener">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.071.312z"/>
+                </svg>
+                Kaggle
+              </a>
             </div>
           </article>
         </aside>
       </main>
     </div>
+
+    <!-- Scroll reveal script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      });
+    </script>
   </body>
 </html>
