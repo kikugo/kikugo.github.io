@@ -477,7 +477,7 @@
             <span class="age" id="age">21</span> y/o AI Engineer building intelligent multi-agent systems
           </p>
         </div>
-        <div class="avatar"><img src="avatar.jpg" alt="Karthik"></div>
+        <div class="avatar"><img src="images/avatar-1.jpg" alt="Karthik"></div>
       </div>
     </section>
 
@@ -804,6 +804,22 @@
         }
       });
     });
+
+    // Random avatar selection
+    const avatarImages = [
+      'images/avatar-1.jpg',
+      'images/avatar-2.jpg',
+      'images/avatar-3.jpg',
+      'images/avatar-4.jpg',
+      'images/avatar-5.jpg',
+      'images/avatar-6.jpg',
+      'images/avatar-7.jpg'
+    ];
+    const avatarImgElement = document.querySelector('.avatar img');
+    if (avatarImgElement) {
+      const randomIndex = Math.floor(Math.random() * avatarImages.length);
+      avatarImgElement.src = avatarImages[randomIndex];
+    }
   </script>
 
 </body>
