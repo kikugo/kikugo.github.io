@@ -118,7 +118,7 @@
       .bento {
         flex: 1;
         display: grid;
-        grid-template-columns: 1.2fr 1fr 340px;
+        grid-template-columns: 1.2fr 1fr 380px;
         grid-template-rows: 1fr auto;
         gap: 1rem;
       }
@@ -341,7 +341,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 100px;
+        min-height: 90px;
         position: relative;
         overflow: hidden;
       }
@@ -355,11 +355,13 @@
       }
 
       .project-thumb span {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         z-index: 1;
+        text-align: center;
+        padding: 0 0.5rem;
       }
 
       /* Project List Items */
@@ -369,7 +371,7 @@
 
       a.project-item {
         display: block;
-        padding: 1rem 1.25rem;
+        padding: 0.9rem 1.25rem;
         border-bottom: 1px solid var(--border);
         transition: background 0.2s;
       }
@@ -386,11 +388,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.2rem;
       }
 
       .project-item h4 {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 500;
       }
 
@@ -411,11 +413,18 @@
         stroke: var(--text);
       }
 
-      .project-item .tech {
-        font-size: 0.7rem;
+      .project-item .desc-mini {
+        font-size: 0.75rem;
         color: var(--text-muted);
+        margin-bottom: 0.25rem;
+        line-height: 1.4;
+      }
+
+      .project-item .tech {
+        font-size: 0.65rem;
+        color: var(--accent);
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.04em;
       }
 
       /* Social Links */
@@ -425,21 +434,22 @@
 
       .social-links {
         display: flex;
-        gap: 1rem;
+        gap: 0.75rem;
         justify-content: center;
+        flex-wrap: wrap;
       }
 
       .social-links a {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
-        font-size: 0.75rem;
+        gap: 0.35rem;
+        font-size: 0.7rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.04em;
         color: var(--text-muted);
         transition: color 0.2s;
-        padding: 0.5rem 0.75rem;
+        padding: 0.45rem 0.65rem;
         border-radius: 0.5rem;
       }
 
@@ -449,21 +459,9 @@
       }
 
       .social-links svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         fill: currentColor;
-      }
-
-      /* Scroll reveal */
-      .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
       }
 
       /* Responsive */
@@ -646,19 +644,19 @@
 
         <!-- Projects Sidebar -->
         <aside class="projects-sidebar" id="projects">
-          <!-- Featured Project -->
-          <a href="https://github.com/kikugo/agent_ai" target="_blank" rel="noreferrer noopener" class="card project-card featured">
+          <!-- Featured Project: MultiAgent AI -->
+          <a href="https://github.com/kikugo/MultiAgent-AI-App" target="_blank" rel="noreferrer noopener" class="card project-card featured">
             <div class="header">
-              <h3>MultiAgent AI</h3>
+              <h3>MultiAgent AI App</h3>
               <span class="arrow">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </span>
             </div>
-            <p class="desc">AI agents for video analysis, finance & PDF querying</p>
+            <p class="desc">AI agents for video analysis, financial data & PDF Q&A</p>
             <div class="project-thumb">
-              <span>Streamlit · Groq · ChromaDB</span>
+              <span>Streamlit · Gemini · Groq · ChromaDB · YFinance</span>
             </div>
           </a>
 
@@ -673,9 +671,10 @@
                   </svg>
                 </span>
               </div>
-              <span class="tech">Python · Next.js · LiveKit · Deepgram</span>
+              <p class="desc-mini">Low-latency voice assistant with customizable personas</p>
+              <span class="tech">Python · Next.js · LiveKit · Deepgram · OpenAI</span>
             </a>
-            <a href="https://github.com/kikugo/cli-ai-tower-defence" target="_blank" rel="noreferrer noopener" class="project-item">
+            <a href="https://github.com/kikugo/cli-tower-defense" target="_blank" rel="noreferrer noopener" class="project-item">
               <div class="item-header">
                 <h4>CLI Tower Defense</h4>
                 <span class="mini-arrow">
@@ -684,18 +683,32 @@
                   </svg>
                 </span>
               </div>
-              <span class="tech">Go · OpenAI API · Gemini</span>
+              <p class="desc-mini">Terminal game where LLMs compete in strategic battles</p>
+              <span class="tech">Go · OpenAI API · Gemini API</span>
             </a>
-            <a href="https://github.com/kikugo" target="_blank" rel="noreferrer noopener" class="project-item">
+            <a href="https://github.com/kikugo/Search-Wise" target="_blank" rel="noreferrer noopener" class="project-item">
               <div class="item-header">
-                <h4>LLM Fine-tuning</h4>
+                <h4>Search-Wise</h4>
                 <span class="mini-arrow">
                   <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </span>
               </div>
-              <span class="tech">Python · HuggingFace · LoRA</span>
+              <p class="desc-mini">Semantic search engine with web scraping & clustering</p>
+              <span class="tech">Python · Streamlit · Sentence Transformers</span>
+            </a>
+            <a href="https://github.com/kikugo/hyderabad-cinemas" target="_blank" rel="noreferrer noopener" class="project-item">
+              <div class="item-header">
+                <h4>Hyderabad Cinemas</h4>
+                <span class="mini-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
+              <p class="desc-mini">Interactive guide to 98 theaters with maps & filtering</p>
+              <span class="tech">React · TypeScript · Tailwind · Leaflet</span>
             </a>
           </article>
 
@@ -725,20 +738,5 @@
         </aside>
       </main>
     </div>
-
-    <!-- Scroll reveal script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      });
-    </script>
   </body>
 </html>
