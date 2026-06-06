@@ -36,6 +36,10 @@
 .concierge-textbar input {
   flex: 1; background: var(--bg, #0a0a0a); color: var(--text, #fafafa);
   border: 1px solid var(--border, #262626); border-radius: 999px; padding: 0.5rem 0.9rem; font: inherit; }
+.concierge-textbar button {
+  border: 1px solid var(--border, #262626); background: transparent;
+  color: var(--text, #fafafa); border-radius: 999px; padding: 0.5rem 0.9rem; cursor: pointer; font: inherit;
+}
 .concierge-highlight {
   outline: 3px solid var(--concierge-accent);
   outline-offset: 4px; border-radius: 0.75rem;

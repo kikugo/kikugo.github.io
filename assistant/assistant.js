@@ -32,6 +32,7 @@ function init() {
   });
 
   async function start() {
+    if (session) return;
     ui.open();
     ui.setState('connecting');
     session = new LiveSession({
@@ -47,6 +48,8 @@ function init() {
       await session.connect();
       sessionTimer = setTimeout(() => end(), MAX_SESSION_MS);
     } catch (e) {
+      session?.close();
+      session = null;
       ui.setCaption('ai', 'could not connect right now. try again later.');
     }
   }
