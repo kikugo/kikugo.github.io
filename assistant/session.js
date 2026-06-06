@@ -100,7 +100,7 @@ export class LiveSession {
       const down = downsampleFloat32(e.data, inRate, INPUT_SAMPLE_RATE);
       const b64 = int16ToBase64(floatTo16BitPCM(down));
       this.session.sendRealtimeInput({
-        media: { data: b64, mimeType: `audio/pcm;rate=${INPUT_SAMPLE_RATE}` },
+        audio: { data: b64, mimeType: `audio/pcm;rate=${INPUT_SAMPLE_RATE}` },
       });
     };
     source.connect(this.workletNode);
@@ -119,6 +119,7 @@ export class LiveSession {
   }
 
   close() {
+    if (this.closed) return;
     this.closed = true;
     try { this.workletNode?.port?.close(); } catch {}
     try { this.micStream?.getTracks().forEach((t) => t.stop()); } catch {}
