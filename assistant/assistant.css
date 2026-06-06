@@ -1,0 +1,43 @@
+:root {
+  --concierge-accent: #6366f1;
+}
+.concierge-trigger {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  cursor: pointer; border: 1px solid var(--border, #262626);
+  background: var(--surface, #141414); color: var(--text, #fafafa);
+  border-radius: 999px; padding: 0.5rem 1rem; font: inherit;
+}
+.concierge-overlay {
+  position: fixed; inset: 0; z-index: 60; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+}
+.concierge-overlay[data-open="true"] { display: flex; }
+.concierge-panel {
+  width: min(92%, 480px); background: var(--surface, #141414);
+  color: var(--text, #fafafa); border: 1px solid var(--border, #262626);
+  border-radius: 1.25rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;
+}
+.concierge-orb {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto;
+  background: radial-gradient(circle at 30% 30%, var(--concierge-accent), #1e1b4b);
+  transition: transform 0.2s ease; }
+.concierge-panel[data-state="speaking"] .concierge-orb { transform: scale(1.12); }
+.concierge-panel[data-state="listening"] .concierge-orb { transform: scale(1.04); }
+.concierge-status { text-align: center; color: var(--muted, #a3a3a3); font-size: 0.85rem; }
+.concierge-caption { min-height: 3.5rem; text-align: center; line-height: 1.5; }
+.concierge-controls { display: flex; gap: 0.75rem; justify-content: center; }
+.concierge-controls button {
+  border: 1px solid var(--border, #262626); background: transparent;
+  color: var(--text, #fafafa); border-radius: 999px; padding: 0.6rem 1.1rem; cursor: pointer; font: inherit;
+}
+.concierge-controls .end { background: #ef4444; border-color: #ef4444; color: #fff; }
+.concierge-textbar { display: flex; gap: 0.5rem; }
+.concierge-textbar input {
+  flex: 1; background: var(--bg, #0a0a0a); color: var(--text, #fafafa);
+  border: 1px solid var(--border, #262626); border-radius: 999px; padding: 0.5rem 0.9rem; font: inherit; }
+.concierge-highlight {
+  outline: 3px solid var(--concierge-accent);
+  outline-offset: 4px; border-radius: 0.75rem;
+  transition: outline-color 0.4s ease;
+}
