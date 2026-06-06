@@ -37,7 +37,7 @@ export function base64ToFloat32(b64) {
   return out;
 }
 
-/** Linear-interpolation downsample from inRate to outRate. */
+/** Downsample from inRate to outRate by nearest-sample decimation (no anti-alias filter; fine for voice). */
 export function downsampleFloat32(input, inRate, outRate) {
   if (outRate === inRate) return input;
   const ratio = inRate / outRate;

@@ -5,6 +5,7 @@ import {
   int16ToBase64,
   base64ToInt16,
   downsampleFloat32,
+  base64ToFloat32,
 } from '../audio.js';
 
 test('floatTo16BitPCM clamps and scales', () => {
@@ -32,4 +33,13 @@ test('downsampleFloat32 is a no-op when rates match', () => {
   const input = Float32Array.from([0.1, 0.2, 0.3]);
   const out = downsampleFloat32(input, 16000, 16000);
   assert.deepEqual(Array.from(out), Array.from(input));
+});
+
+test('base64ToFloat32 decodes PCM16 to [-1,1] floats', () => {
+  const pcm = Int16Array.from([0, -32768, 16384]);
+  const b64 = int16ToBase64(pcm);
+  const out = base64ToFloat32(b64);
+  assert.equal(out[0], 0);
+  assert.equal(out[1], -1);              // -32768 / 0x8000
+  assert.ok(Math.abs(out[2] - 0.5) < 1e-6); // 16384 / 0x8000
 });
