@@ -52,3 +52,18 @@
   outline-offset: 4px; border-radius: 0.75rem;
   transition: outline-color 0.4s ease;
 }
+/* Hero trigger: a typographic text link, not a button, so it flows with the minimal hero. */
+.concierge-link {
+  margin-top: 0.85rem;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: none; border: 0; border-bottom: 1px solid var(--border, #262626);
+  padding: 0 0 2px; cursor: pointer;
+  font: inherit; font-size: 0.875rem; color: var(--muted, #a3a3a3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.concierge-link:hover { color: var(--text, #fafafa); border-color: var(--text, #fafafa); }
+.concierge-arrow { transition: transform 0.2s ease; }
+.concierge-link:hover .concierge-arrow { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .concierge-arrow { transition: none; }
+}

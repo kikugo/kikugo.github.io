@@ -72,10 +72,10 @@ function init() {
     ui.close();
   }
 
-  // Trigger: use an existing dock button if present, else inject a floating one.
-  const existing = document.getElementById('concierge-trigger');
-  if (existing) {
-    existing.addEventListener('click', start);
+  // Triggers: wire every element marked data-concierge; if none, inject a floating one.
+  const triggers = document.querySelectorAll('[data-concierge]');
+  if (triggers.length) {
+    triggers.forEach((t) => t.addEventListener('click', start));
   } else {
     const btn = document.createElement('button');
     btn.className = 'concierge-trigger';

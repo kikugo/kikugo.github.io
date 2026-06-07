@@ -23,7 +23,7 @@ export class ConciergeUI {
           <button class="end" type="button">end</button>
         </div>
         <div class="concierge-textbar">
-          <input type="text" placeholder="or type a question..." aria-label="Type a question" />
+          <input type="text" maxlength="600" placeholder="or type a question..." aria-label="Type a question" />
           <button class="send" type="button">send</button>
         </div>
       </div>`;
@@ -38,7 +38,7 @@ export class ConciergeUI {
     this.micBtn.onclick = () => this.h.onMic?.();
     this.overlay.querySelector('.end').onclick = () => this.h.onEnd?.();
     const send = () => {
-      const v = this.input.value.trim();
+      const v = this.input.value.trim().slice(0, 600); // cap payload length
       if (v) { this.h.onText?.(v); this.input.value = ''; }
     };
     this.overlay.querySelector('.send').onclick = send;

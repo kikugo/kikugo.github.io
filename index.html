@@ -477,6 +477,9 @@
           <p>
             <span class="age" id="age">23</span> y/o AI Engineer building LLM and agentic systems
           </p>
+          <button class="concierge-link" data-concierge type="button">
+            ask my ai about me <span class="concierge-arrow" aria-hidden="true">&rarr;</span>
+          </button>
         </div>
         <div class="avatar"><img src="images/avatar-1.jpg" alt="Karthik"></div>
       </div>
@@ -693,70 +696,16 @@
           </div>
         </a>
 
-        <a id="proj-voice-agent" href="https://github.com/kikugo/voice-agent" target="_blank" rel="noopener noreferrer" class="project-card">
+        <a id="proj-medquery" href="https://github.com/kikugo/MedQuery" target="_blank" rel="noopener noreferrer" class="project-card">
           <div class="project-content">
-            <h3>Voice Agent</h3>
-            <p>Realtime voice assistant for technical interviews, built on a LiveKit speech pipeline.</p>
+            <h3>MedQuery</h3>
+            <p>Medical Q&amp;A over drug guidelines. Hybrid BM25 and FAISS retrieval with rank fusion, a multi-agent pipeline behind an MCP server, and prompts tracked against an eval set.</p>
           </div>
           <div class="project-tags">
             <span class="project-tag">Python</span>
-            <span class="project-tag">LiveKit</span>
-            <span class="project-tag">OpenAI</span>
-            <span class="project-tag">Deepgram</span>
-          </div>
-        </a>
-
-        <a id="proj-career-compass" href="https://github.com/kikugo/career-compass" target="_blank" rel="noopener noreferrer"
-          class="project-card">
-          <div class="project-content">
-            <h3>Career Compass</h3>
-            <p>Career agent that scrapes a LinkedIn profile, scores it against a job description, and rewrites the weak parts. Live on Hugging Face Spaces.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">LangChain</span>
-            <span class="project-tag">Gemini</span>
-            <span class="project-tag">Streamlit</span>
-          </div>
-        </a>
-
-        <a id="proj-strava-run-analyzer" href="https://github.com/kikugo/strava-run-analyzer" target="_blank" rel="noopener noreferrer"
-          class="project-card">
-          <div class="project-content">
-            <h3>Strava Run Analyzer</h3>
-            <p>Pulls your runs from Strava, charts pace and distance over time, and layers Gemini coaching on top.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">Strava API</span>
-            <span class="project-tag">Gemini</span>
-            <span class="project-tag">Streamlit</span>
-          </div>
-        </a>
-
-        <a id="proj-similarity-api" href="https://github.com/kikugo/my-similarity-api" target="_blank" rel="noopener noreferrer"
-          class="project-card">
-          <div class="project-content">
-            <h3>Similarity API</h3>
-            <p>Small REST microservice for text similarity. Dockerized, with the model preloaded so all workers share one copy in memory.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">Flask</span>
-            <span class="project-tag">Docker</span>
-            <span class="project-tag">Transformers</span>
-          </div>
-        </a>
-
-        <a id="proj-go-ffmpeg" href="https://github.com/kikugo/go-ffmpeg" target="_blank" rel="noopener noreferrer" class="project-card">
-          <div class="project-content">
-            <h3>Streaming Audio Converter</h3>
-            <p>Audio format converter in Go. Each client gets its own goroutine and FFmpeg process over a WebSocket.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Go</span>
-            <span class="project-tag">WebSockets</span>
-            <span class="project-tag">FFmpeg</span>
+            <span class="project-tag">FAISS</span>
+            <span class="project-tag">BM25</span>
+            <span class="project-tag">MCP</span>
           </div>
         </a>
 
@@ -847,7 +796,7 @@
         </svg>
       </a>
 
-      <button id="concierge-trigger" class="dock-item" title="Talk to my portfolio">🤖</button>
+      <button id="concierge-trigger" class="dock-item" title="Talk to my portfolio" data-concierge>🤖</button>
 
     </div>
   </div>
