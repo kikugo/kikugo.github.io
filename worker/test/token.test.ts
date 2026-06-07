@@ -17,4 +17,22 @@ describe('buildTokenConfig', () => {
     expect(new Date(cfg.expireTime).getTime()).toBeGreaterThan(now.getTime());
     expect(new Date(cfg.newSessionExpireTime).getTime()).toBeGreaterThan(now.getTime());
   });
+
+  it('bakes the session config (systemInstruction + tools + transcription) into the locked config', () => {
+    const cfg = buildTokenConfig(new Date(), {
+      systemInstruction: { parts: [{ text: 'be a guide' }] },
+      tools: [{ functionDeclarations: [] }],
+    });
+    const c = cfg.liveConnectConstraints.config;
+    expect(c.systemInstruction).toEqual({ parts: [{ text: 'be a guide' }] });
+    expect(c.tools).toEqual([{ functionDeclarations: [] }]);
+    expect(c.outputAudioTranscription).toBeDefined();
+    expect(c.inputAudioTranscription).toBeDefined();
+  });
+
+  it('omits systemInstruction and tools when none are provided', () => {
+    const c = buildTokenConfig(new Date()).liveConnectConstraints.config;
+    expect(c.systemInstruction).toBeUndefined();
+    expect(c.tools).toBeUndefined();
+  });
 });

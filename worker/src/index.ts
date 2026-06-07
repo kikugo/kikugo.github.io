@@ -1,7 +1,30 @@
 import { corsHeaders, isAllowedOrigin } from './cors';
 import { checkAndIncrement, dayBucket } from './ratelimit';
-import { mintToken } from './token';
+import { mintToken, type SessionConfig } from './token';
 import { PER_IP_DAILY_LIMIT, GLOBAL_DAILY_LIMIT } from './config';
+
+const MAX_SYSTEM_INSTRUCTION_CHARS = 24000;
+const MAX_TOOLS = 16;
+
+/** Read the client's requested session config from the body, with size caps. */
+async function readSessionConfig(request: Request): Promise<SessionConfig> {
+  const session: SessionConfig = {};
+  try {
+    const body = (await request.json()) as Record<string, unknown>;
+    if (body && typeof body === 'object') {
+      const si = body.systemInstruction;
+      if (si && JSON.stringify(si).length <= MAX_SYSTEM_INSTRUCTION_CHARS) {
+        session.systemInstruction = si;
+      }
+      if (Array.isArray(body.tools) && body.tools.length <= MAX_TOOLS) {
+        session.tools = body.tools;
+      }
+    }
+  } catch {
+    // No or invalid body: mint a basic token (still usable, just ungrounded).
+  }
+  return session;
+}
 
 export interface Env {
   GEMINI_API_KEY: string;
@@ -46,7 +69,8 @@ export default {
     if (!global.allowed) return json({ error: 'rate limited' }, 429, cors);
 
     try {
-      const minted = await mintToken(env.GEMINI_API_KEY);
+      const session = await readSessionConfig(request);
+      const minted = await mintToken(env.GEMINI_API_KEY, session);
       return json(minted, 200, cors);
     } catch (err) {
       console.error('mint failed', err);

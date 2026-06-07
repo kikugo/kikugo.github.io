@@ -1,6 +1,6 @@
 import { GoogleGenAI, Modality } from './sdk.js';
 import { WORKER_URL, MODEL, INPUT_SAMPLE_RATE } from './config.js';
-import { SYSTEM_PROMPT } from './knowledge.js';
+import { SYSTEM_PROMPT, PROFILE } from './knowledge.js';
 import { TOOL_DECLARATIONS, dispatchTool } from './tools.js';
 import { floatTo16BitPCM, int16ToBase64, downsampleFloat32 } from './audio.js';
 import { AudioPlayer } from './player.js';
@@ -25,12 +25,38 @@ export class LiveSession {
     this.micStream = null;
     this.workletNode = null;
     this.closed = false;
+    this._aiText = '';
+    this._userText = '';
   }
 
   _setState(state) { this.cb.onState?.(state); }
 
-  async _fetchToken() {
-    const res = await fetch(WORKER_URL, { method: 'POST' });
+  // The Live API applies the token's locked config and ignores client-only
+  // fields, so systemInstruction + tools must be sent here to be baked into the
+  // token by the worker. We also pass them at connect (same values) as a no-op
+  // fallback. Sending them from the client keeps knowledge.js the single source
+  // of truth (no worker redeploy on prompt edits).
+  _buildSessionConfig() {
+    return {
+      systemInstruction: {
+        parts: [{
+          text:
+            `${SYSTEM_PROMPT}\n\n` +
+            `this is the only information you have about karthik. ` +
+            `use only these facts and do not invent anything beyond them:\n` +
+            JSON.stringify(PROFILE),
+        }],
+      },
+      tools: [{ functionDeclarations: TOOL_DECLARATIONS }],
+    };
+  }
+
+  async _fetchToken(sessionConfig) {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(sessionConfig),
+    });
     if (!res.ok) throw new Error(`token request failed: ${res.status}`);
     const { token } = await res.json();
     return token;
@@ -38,7 +64,8 @@ export class LiveSession {
 
   async connect() {
     this._setState('connecting');
-    const token = await this._fetchToken();
+    const sessionConfig = this._buildSessionConfig();
+    const token = await this._fetchToken(sessionConfig);
     const ai = new GoogleGenAI({
       apiKey: token,
       httpOptions: { apiVersion: 'v1alpha' },
@@ -48,8 +75,8 @@ export class LiveSession {
       model: MODEL,
       config: {
         responseModalities: [Modality.AUDIO],
-        systemInstruction: SYSTEM_PROMPT,
-        tools: [{ functionDeclarations: TOOL_DECLARATIONS }],
+        systemInstruction: sessionConfig.systemInstruction,
+        tools: sessionConfig.tools,
         inputAudioTranscription: {},
         outputAudioTranscription: {},
       },
@@ -70,8 +97,17 @@ export class LiveSession {
     for (const p of parts) {
       if (p.inlineData?.data) this.player.enqueue(p.inlineData.data);
     }
-    if (sc?.outputTranscription?.text) this.cb.onCaption?.('ai', sc.outputTranscription.text);
-    if (sc?.inputTranscription?.text) this.cb.onCaption?.('user', sc.inputTranscription.text);
+    // Transcriptions arrive in small incremental chunks; accumulate them into a
+    // full sentence per turn instead of flashing one or two words at a time.
+    if (sc?.outputTranscription?.text) {
+      this._aiText += sc.outputTranscription.text;
+      this.cb.onCaption?.('ai', this._aiText);
+    }
+    if (sc?.inputTranscription?.text) {
+      this._userText += sc.inputTranscription.text;
+      this.cb.onCaption?.('user', this._userText);
+    }
+    if (sc?.turnComplete) { this._aiText = ''; this._userText = ''; }
 
     if (msg.toolCall?.functionCalls?.length) {
       this._setState('thinking');
