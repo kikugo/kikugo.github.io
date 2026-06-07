@@ -1,5 +1,5 @@
 // Public client config. No secrets here.
-export const WORKER_URL = 'https://REPLACE_WITH_WORKER_URL/token';
+export const WORKER_URL = 'https://portfolio-token-worker.karthikchangal39.workers.dev/token';
 export const MODEL = 'gemini-3.1-flash-live-preview';
 export const SDK_URL = 'https://esm.run/@google/genai@1.29.0';
 
