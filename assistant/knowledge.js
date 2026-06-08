@@ -92,11 +92,12 @@ export const PROFILE = {
         'Multimodal RAG over text, images, audio and video in one pipeline, with ' +
         'hybrid routing between a local vector store and a managed backend.',
       details: [
-        'Hybrid retrieval: BM25 keyword search and dense vector search fused with reciprocal rank fusion, with the BM25 scoring written from scratch rather than pulled from a library.',
-        'Ingests six media types (text, images, audio, video, PDFs, transcripts) with per-format chunking and timestamp metadata.',
-        'A fast Gemini classifier routes each query between a local ChromaDB store and Google File Search for large managed dumps.',
-        'Has an evaluation harness that measures Recall@K against a gold set, and SHA-256 content-addressed storage so the same file is not re-embedded.',
-        'Uses Gemini Embedding for one shared vector space and Gemini 2.5 Flash for answers with citations. The README is candid about current limitations.',
+        'Local retrieval is genuinely hybrid: for each query it pulls a dense vector candidate pool from ChromaDB, runs a hand-written BM25 (k1=1.5, b=0.75) over the indexed chunks, and fuses the two with reciprocal rank fusion (k=60), passing the fused top-K (not just the top hit) to the model with citation markers.',
+        'Ingests four modalities into one Gemini embedding space: images (EXIF-stripped and resized), PDFs (overlapping page chunks, text kept for BM25), audio (decoded to WAV and sliced into ~80s windows with per-chunk speech-to-text), and video (adaptive frame sampling with scene-change dedup, each frame inheriting its window transcript).',
+        'In auto mode a Gemini 2.5 Flash classifier routes each query to local hybrid search for precise visual, audio or timestamp lookups, or to Google File Search for broad summarization over large text dumps; follow-up questions are rewritten into standalone queries using chat history.',
+        'Tracks token usage and cost across every Gemini call in a query (routing, expansion, embedding, answer) with a per-prompt breakdown and a running session total, and shows indexed-chunk counts next to file counts in the library.',
+        'Content-addressed storage (SHA-256) skips re-embedding identical uploads, keeps one registry row per file with all its chunk ids, and cleans up every artifact on delete.',
+        'An offline eval harness measures Recall@3 and Recall@5 against a gold set using BM25-only search, so retrieval can be regression-checked in CI without an API key.',
       ],
     },
     {
@@ -136,13 +137,16 @@ export const PROFILE = {
       url: 'https://github.com/kikugo/cli-tower-defense',
       tech: ['Go', 'OpenAI', 'Gemini'],
       blurb:
-        'Terminal tower defense in Go where two LLMs go head to head in real time, ' +
-        'one placing towers and one spawning enemies.',
+        'Terminal tower defense in Go where two LLMs play head to head in real time, ' +
+        'one defending with towers and one attacking with waves, on a provider-agnostic ' +
+        'router with tournaments, Elo ratings and deterministic replays.',
       details: [
-        'Two frontier models play against each other live: OpenAI o3 defends by placing towers and Gemini 2.5 Pro attacks by spawning enemies. The game state is serialized to JSON and each model replies with JSON actions plus a reason and a taunt.',
-        'Non-blocking AI turns via goroutines and a buffered result channel, with turn timeouts, fallbacks and panic recovery.',
-        'The game engine is hand-written in Go with no game or TUI framework: procedural path generation, range and splash math, target prioritization (nearest, strongest, fastest), tower upgrade curves and several enemy types (basic, fast, tank, shielded, healer).',
-        'Talks to both model APIs over raw HTTP, without SDKs.',
+        'Two models play asymmetric roles each match: one defends by placing and upgrading towers, the other attacks by spawning enemies and triggering waves. The default matchup is OpenAI o3 vs Gemini 2.5 Pro, both configurable. Each model returns JSON decisions (including a taunt), and malformed or illegal moves are normalized instead of crashing the match.',
+        'A provider-agnostic router maps each player to a decision provider: a native Gemini provider, an OpenAI-compatible provider that works with any chat-completions endpoint, and a scripted provider for deterministic tests, each with its own retry, timeout, temperature and token settings.',
+        'A tournament engine runs configured matchups with role-swapped mirror matches for fairness, aggregates standings, win rates and average wave reached, keeps a persistent Elo rating, and computes a normalized score that rewards kills, wins and wave progress while penalizing rejected actions and provider errors.',
+        'Any match can emit a full typed JSON replay, a result summary, and a reproducibility manifest (seed, map, ruleset, model names, git commit); a Bubble Tea TUI can step through a replay frame by frame.',
+        'Named model profiles and arena rulesets (default, fast, marathon) load from JSON, per-call latency, token usage and cost are tracked, and each model turn runs in its own goroutine with results over a buffered channel and panic recovery.',
+        'Around 50 Go files, roughly 31 of them tests (about 65 test functions), cover providers, scoring, ratings, scheduling, determinism, anti-stall rules and replay.',
       ],
     },
     {
