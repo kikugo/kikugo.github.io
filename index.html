@@ -289,6 +289,30 @@
       margin-top: auto;
     }
 
+    /* Cards with a live demo carry two links, so the whole tile can no longer be
+       one anchor. Tighten the tag row above them and give the links their own. */
+    .project-tags:has(+ .project-links) {
+      padding-bottom: 0.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.875rem;
+      padding: 0 1rem 1rem;
+      font-size: 0.8125rem;
+    }
+
+    .project-links a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.15s;
+    }
+
+    .project-links a:hover {
+      border-bottom-color: var(--text);
+    }
+
     .project-tag {
       display: inline-flex;
       padding: 0.125rem 0.5rem;
@@ -629,8 +653,7 @@
       <h2>projects</h2>
       <div class="projects">
 
-        <a id="proj-unified-rag" href="https://github.com/kikugo/unified-rag" target="_blank" rel="noopener noreferrer"
-          class="project-card">
+        <div id="proj-unified-rag" class="project-card">
           <div class="project-content">
             <h3>Unified RAG</h3>
             <p>Multimodal RAG over text, images, audio, and video in one pipeline, with hybrid routing between local and managed backends.</p>
@@ -641,7 +664,11 @@
             <span class="project-tag">ChromaDB</span>
             <span class="project-tag">Streamlit</span>
           </div>
-        </a>
+          <div class="project-links">
+            <a href="https://unified-rag.streamlit.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="https://github.com/kikugo/unified-rag" target="_blank" rel="noopener noreferrer">Code</a>
+          </div>
+        </div>
 
         <a id="proj-cli-tower-defense" href="https://github.com/kikugo/cli-tower-defense" target="_blank" rel="noopener noreferrer"
           class="project-card">
@@ -656,7 +683,7 @@
           </div>
         </a>
 
-        <a id="proj-videosense" href="https://github.com/kikugo/VideoSense" target="_blank" rel="noopener noreferrer" class="project-card">
+        <div id="proj-videosense" class="project-card">
           <div class="project-content">
             <h3>VideoSense</h3>
             <p>Search inside a video with plain language. Indexes frames and transcripts, then jumps you to the matching moment.</p>
@@ -667,7 +694,11 @@
             <span class="project-tag">Qdrant</span>
             <span class="project-tag">ffmpeg</span>
           </div>
-        </a>
+          <div class="project-links">
+            <a href="https://videosense.streamlit.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="https://github.com/kikugo/VideoSense" target="_blank" rel="noopener noreferrer">Code</a>
+          </div>
+        </div>
 
         <a id="proj-medquery" href="https://github.com/kikugo/MedQuery" target="_blank" rel="noopener noreferrer" class="project-card">
           <div class="project-content">
