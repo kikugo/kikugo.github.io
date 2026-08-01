@@ -98,7 +98,8 @@ export const PROFILE = {
         'In auto mode a Gemini 3.5 Flash Lite classifier routes each query to local hybrid search for precise visual, audio or timestamp lookups, or to Google File Search for broad summarization over large text dumps; follow-up questions are rewritten into standalone queries using chat history.',
         'Tracks token usage and cost across every Gemini call in a query (routing, expansion, embedding, answer) with a per-prompt breakdown and a running session total, and shows indexed-chunk counts next to file counts in the library.',
         'Content-addressed storage (SHA-256) skips re-embedding identical uploads, keeps one registry row per file with all its chunk ids, and cleans up every artifact on delete.',
-        'An offline eval harness measures Recall@3 and Recall@5 against a gold set using BM25-only search, so retrieval can be regression-checked in CI without an API key.',
+        'An offline eval harness measures recall@k against a 151-passage, 50-query gold set with cached embeddings, so all three retrieval arms can be regression-checked in CI without an API key.',
+        'The published ablation is deliberately unflattering: on the headline number dense alone beats the hybrid it ships with. Splitting by query type shows why, and passage length turned out to be the variable that matters. Dense finds exact identifiers at 0.941 recall@1 in 11-word passages but only 0.471 at 128 words, while BM25 holds 1.000 in both, because one vector has to stand in for the whole passage and a serial number gets averaged away. On one-line documents dense looks flawless and the entire argument for BM25 disappears.',
       ],
     },
     {
@@ -179,7 +180,8 @@ export const PROFILE = {
       details: [
         'Hybrid BM25 and FAISS retrieval with reciprocal rank fusion over roughly 663 pages of MSF Essential Drugs guidelines.',
         'A four-agent pipeline: an internal researcher, an external fact-checker that searches the web through a DuckDuckGo MCP tool, a synthesizer, and a step that updates the knowledge base.',
-        'Tools are served through an MCP server built with FastMCP.',
+        'Tools are served through an MCP server built with FastMCP: four tools over stdio, two of which mutate the corpus and serialize their writes behind a lock so concurrent calls cannot corrupt the FAISS index.',
+        'The hybrid retrieval claim was eventually measured rather than asserted, using a paired ablation that embeds each question once and feeds the same vector to both arms. Vector-only matched or beat hybrid at every cutoff, but with only 4 of 33 questions disagreeing (McNemar p=0.63) the honest conclusion is a null result, not a reversal: there had simply never been evidence for the original claim. The likely reason is that these chunks average 59 words, the short end of the passage-length curve measured in Unified RAG, so dense retrieval never hits the failure mode BM25 was added to cover. Hybrid stays on because it costs nothing; the claim changed, not the code.',
         'The prompts went through seven tracked versions scored against an eval set with an LLM as judge, improving from about 85% to 100% on the early question set, alongside a token and cost analytics view.',
         'A team project from an EPITA GenAI hackathon; be honest that it was built with a few people.',
       ],
