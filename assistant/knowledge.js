@@ -87,6 +87,7 @@ export const PROFILE = {
       id: 'unified-rag',
       title: 'Unified RAG',
       url: 'https://github.com/kikugo/unified-rag',
+      demo: 'https://unified-rag.streamlit.app/',
       tech: ['Python', 'Gemini', 'ChromaDB', 'Streamlit'],
       blurb:
         'Multimodal RAG over text, images, audio and video in one pipeline, with ' +
@@ -94,7 +95,7 @@ export const PROFILE = {
       details: [
         'Local retrieval is genuinely hybrid: for each query it pulls a dense vector candidate pool from ChromaDB, runs a hand-written BM25 (k1=1.5, b=0.75) over the indexed chunks, and fuses the two with reciprocal rank fusion (k=60), passing the fused top-K (not just the top hit) to the model with citation markers.',
         'Ingests four modalities into one Gemini embedding space: images (EXIF-stripped and resized), PDFs (overlapping page chunks, text kept for BM25), audio (decoded to WAV and sliced into ~80s windows with per-chunk speech-to-text), and video (adaptive frame sampling with scene-change dedup, each frame inheriting its window transcript).',
-        'In auto mode a Gemini 2.5 Flash classifier routes each query to local hybrid search for precise visual, audio or timestamp lookups, or to Google File Search for broad summarization over large text dumps; follow-up questions are rewritten into standalone queries using chat history.',
+        'In auto mode a Gemini 3.5 Flash Lite classifier routes each query to local hybrid search for precise visual, audio or timestamp lookups, or to Google File Search for broad summarization over large text dumps; follow-up questions are rewritten into standalone queries using chat history.',
         'Tracks token usage and cost across every Gemini call in a query (routing, expansion, embedding, answer) with a per-prompt breakdown and a running session total, and shows indexed-chunk counts next to file counts in the library.',
         'Content-addressed storage (SHA-256) skips re-embedding identical uploads, keeps one registry row per file with all its chunk ids, and cleans up every artifact on delete.',
         'An offline eval harness measures Recall@3 and Recall@5 against a gold set using BM25-only search, so retrieval can be regression-checked in CI without an API key.',
@@ -119,15 +120,15 @@ export const PROFILE = {
       id: 'menu-vision',
       title: 'Menu Vision',
       url: 'https://github.com/kikugo/menu-vision',
-      tech: ['Python', 'Gemini', 'Imagen 4', 'Streamlit'],
+      tech: ['Python', 'Gemini 3.1 Flash Image', 'Streamlit'],
       blurb:
         'Turns a menu photo into a browsable, photo-rich version. OCR pulls the ' +
-        'items, Imagen generates the food photos, and a chatbot answers dietary ' +
+        'items, Gemini generates the food photos, and a chatbot answers dietary ' +
         'questions.',
       details: [
         'A streaming JSON parser tracks brace depth in the model token stream and emits each menu item the moment it is complete, so image generation for one dish starts while the model is still reading the next one.',
-        'Generates food photos with Imagen 4 Fast in parallel, injecting the restaurant extracted visual style into every prompt so the images stay consistent.',
-        'Gemini 2.5 Flash handles OCR and structured extraction: name, description, price, ingredients, tags and macro estimates.',
+        'Generates food photos with Gemini 3.1 Flash Image in parallel, injecting the restaurant extracted visual style into every prompt so the images stay consistent, and caching each result on disk so the same dish is never paid for twice.',
+        'Gemini 3.5 Flash Lite handles OCR and structured extraction: name, description, price, ingredients, tags and macro estimates.',
         'Includes an "ask the menu" dietary chatbot for recommendations and pairings.',
       ],
     },
@@ -153,13 +154,14 @@ export const PROFILE = {
       id: 'videosense',
       title: 'VideoSense',
       url: 'https://github.com/kikugo/VideoSense',
-      tech: ['Python', 'Gemini', 'ChromaDB', 'ffmpeg'],
+      demo: 'https://videosense.streamlit.app/',
+      tech: ['Python', 'Gemini', 'Qdrant', 'ffmpeg'],
       blurb:
         'Semantic video search. Indexes frames and transcripts so you can find a ' +
         'moment with plain language and jump straight to it.',
       details: [
         'Dual-channel search: it embeds video frames and spoken-transcript chunks separately and fuses the two result sets with weighted reciprocal rank fusion, so it handles both visual queries and spoken-content queries.',
-        'A three-tier storage layer behind one interface: in-memory, ChromaDB, and a hybrid that reads memory-first and falls back to Chroma.',
+        'A three-tier storage layer behind one interface: Qdrant Cloud as the primary index, Chroma as the fallback, and in-memory as a last resort, chosen at startup by a health check so a suspended free-tier cluster can never produce a broken demo.',
         'Async embedding pipeline with retry and backoff and progress reporting, plus scene-aware frame sampling.',
         'Content-based video identity skips re-indexing a file it has already seen, and a configurable similarity threshold filters weak matches.',
       ],
@@ -227,6 +229,7 @@ voice
 what you know
 - everything you can talk about is in the profile you were given: about, experience, projects, skills, education, languages, links, highlights. treat that as the complete set of facts about karthik.
 - each project has a short blurb plus a deeper "details" list. for a quick mention use the blurb; when someone wants to know how a project actually works or asks something technical, draw on that project's details and explain it clearly in plain language. keep it conversational, not a spec dump.
+- two projects have a "demo" field with a link you can actually try in the browser. if someone asks whether they can try something, play with it, or see it running, point them at those. never say a project has a live demo unless it has that field.
 - do not invent or guess real facts. no made-up numbers, dates, employers, tools, or claims about his work. if a work detail isn't in the profile, don't fabricate it.
 - if someone asks about a company, role, project, or figure that is not in the profile, don't speculate. deflect with a little personality (see "off topic" below) and steer back to what he has actually shipped.
 
