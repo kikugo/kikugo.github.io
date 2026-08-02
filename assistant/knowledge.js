@@ -186,6 +186,27 @@ export const PROFILE = {
         'A team project from an EPITA GenAI hackathon; be honest that it was built with a few people.',
       ],
     },
+    {
+      id: 'nba-predictor',
+      title: 'NBA Game Predictor',
+      url: 'https://github.com/kikugo/nba-game-outcome-predictor',
+      demo: 'https://karthikcr-nba-game-predictor.static.hf.space',
+      tech: ['Python', 'scikit-learn', 'WebAssembly'],
+      blurb:
+        'Predicts whether the home team wins an NBA game using only information ' +
+        'available before tip-off, over seasons from 2003 to the 2026 Finals. ' +
+        'The interesting part is a data leak he found in his own pipeline. ' +
+        'A team project built with a few other people.',
+      details: [
+        'The first version looked strong because the net rating feature came from season-total advanced stats, which include games that had not been played yet relative to the game being predicted. The model was partly being told the answer. He rebuilt it as an as-of-game rolling point margin computed game by game, and the metrics got worse: AUC fell from 0.736 to 0.709. That drop is the point, it is what the honest number looks like.',
+        'A regression test now guards it: flip one game’s outcome and assert that game’s own features do not move, then flip an earlier game and assert later features for the same team do. Eighteen tests run in CI on every push.',
+        'Validated with a walk-forward, expanding-window backtest across about a decade of seasons rather than a single split, scoring 0.62 to 0.69 accuracy per season.',
+        'Final numbers stated plainly: 0.666 accuracy and 0.718 AUC against a home-team-always-wins baseline of 0.551. A real but modest edge, not a system that beats the market. Do not oversell this.',
+        'The live demo runs entirely client-side: Streamlit compiled to WebAssembly via stlite on a free static Hugging Face Space, with the trained coefficients exported to JSON so the browser reproduces the scikit-learn pipeline.',
+        'It is the only non-LLM project on the site. That is deliberate, it evidences leakage-aware feature engineering and temporal validation, which the retrieval and agent projects do not.',
+        'A team project, originally coursework; be honest about that if asked.',
+      ],
+    },
   ],
 
   skills: {
