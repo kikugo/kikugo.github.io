@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Karthik | Recsys research</title>
+  <meta name="description"
+    content="Results from our master's thesis on LLM-augmented sequential recommendation on MovieLens-1M, and how Reel History uses them.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #262626;
+      --text: #fafafa;
+      --muted: #a3a3a3;
+      --accent: #ffffff;
+      --ref: #e8a33d;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    section:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    section:nth-child(n+4) {
+      animation-delay: 0.3s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      section {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .back:hover {
+      color: var(--text);
+      border-bottom-color: var(--text);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--text);
+    }
+
+    .lede {
+      font-size: 1rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 0.5rem;
+      padding: 0.875rem 1rem;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    figure {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    figcaption {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .key {
+      display: inline-block;
+      width: 0.75rem;
+      height: 2px;
+      vertical-align: middle;
+      margin-right: 0.25rem;
+      background: var(--ref);
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    details {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    summary:hover {
+      color: var(--text);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th,
+    td {
+      padding: 0.4rem 0.6rem;
+      text-align: right;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th:nth-child(-n+2),
+    td:nth-child(-n+2) {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      background: var(--surface);
+    }
+
+    td {
+      color: var(--text);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      height: 2.5rem;
+      padding: 0 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: calc(0.5rem - 2px);
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--text);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 2.5rem 1rem 3rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <a class="back" href="index.html">&larr; karthik</a>
+
+    <section id="question">
+      <h1>do LLMs help a recommender?</h1>
+      <p class="lede">For our master's thesis at EPITA, four of us tested whether LLM, text-retrieval and
+        knowledge-graph augmentation make sequential recommendation better, and whether the gain lands on users with
+        thin histories. Every model ran under one protocol on MovieLens-1M: leave-one-out splits, each held-out film
+        ranked against 100 sampled negatives, scored with HR@10, NDCG@10 and MRR@10, overall and per density stratum.
+      </p>
+      <p>Short version: on this dataset, no. A tuned classical model beat every augmented one, and the best augmented
+        method only matched recommending popular films.</p>
+      <div class="stats">
+        <div class="stat"><b>0.8119</b><span>GRU4Rec, best of 16</span></div>
+        <div class="stat"><b>0.4526</b><span>popularity prior</span></div>
+        <div class="stat"><b>0.4310</b><span>best fine-tuned LLM</span></div>
+      </div>
+    </section>
+
+    <section id="configs">
+      <h2>sixteen configurations, one ranking</h2>
+      <p>Classical sequential models sit at the top: <strong>GRU4Rec 0.8119</strong>, BERT4Rec 0.8118, SASRec 0.8055.
+        Only one augmented method clears the popularity prior: V3+Pop, an SBERT and popularity hybrid, at 0.4964.
+        Every fine-tuned LLM variant, every pure retrieval method and the knowledge-graph variant land below
+        popularity. Several sit near the random floor of 10/101.</p>
+      <figure>
+        <img src="images/research/hr10_configs.svg" width="800" height="720"
+          alt="Horizontal bar chart of overall HR@10 for 16 configurations. GRU4Rec 0.8119, BERT4Rec 0.8118 and SASRec 0.8055 lead; BPR 0.6773; GenreBPR 0.5735; V3+Pop 0.4964 is the only augmented method above the popularity line at 0.4526; LLaRA V2a is last at 0.0270.">
+        <figcaption>HR@10 overall. <span class="key"></span>Dashed line: popularity prior. LLM variants were scored on a
+          stratified subset of 1,500 users because of the compute budget, and the rest on all 6,040. The classical
+          models were run at both scales, and the bars show the full population.</figcaption>
+      </figure>
+      <details>
+        <summary>Show the full table (Table 5.1, HR@10)</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Method</th><th>Family</th><th>N</th><th>Sparse</th><th>Mid</th><th>Dense</th><th>Overall</th></tr>
+            </thead>
+            <tbody>
+            <tr><td>GRU4Rec</td><td>Classical CF</td><td>6,040</td><td>0.8929</td><td>0.8206</td><td>0.7126</td><td>0.8119</td></tr>
+            <tr><td>GRU4Rec</td><td>Classical CF</td><td>1,500</td><td>0.8720</td><td>0.8340</td><td>0.7040</td><td>0.8110</td></tr>
+            <tr><td>BERT4Rec</td><td>Classical CF</td><td>6,040</td><td>0.8811</td><td>0.8235</td><td>0.7179</td><td>0.8118</td></tr>
+            <tr><td>BERT4Rec</td><td>Classical CF</td><td>1,500</td><td>0.8560</td><td>0.8380</td><td>0.6980</td><td>0.8080</td></tr>
+            <tr><td>SASRec</td><td>Classical CF</td><td>6,040</td><td>0.8890</td><td>0.8149</td><td>0.7019</td><td>0.8055</td></tr>
+            <tr><td>SASRec</td><td>Classical CF</td><td>1,500</td><td>0.8760</td><td>0.8160</td><td>0.6840</td><td>0.7980</td></tr>
+            <tr><td>BPR</td><td>Collaborative</td><td>6,040</td><td>0.7989</td><td>0.7002</td><td>0.5083</td><td>0.6773</td></tr>
+            <tr><td>BPR</td><td>Collaborative</td><td>1,500</td><td>0.7940</td><td>0.6980</td><td>0.4980</td><td>0.6720</td></tr>
+            <tr><td>GenreBPR</td><td>Content-CF</td><td>6,040</td><td>0.6275</td><td>0.6056</td><td>0.4544</td><td>0.5735</td></tr>
+            <tr><td>GenreBPR</td><td>Content-CF</td><td>1,500</td><td>0.6260</td><td>0.6120</td><td>0.4320</td><td>0.5710</td></tr>
+            <tr><td>V3+Pop (α = 0.5)</td><td>SBERT+Pop</td><td>6,040</td><td>0.5953</td><td>0.5002</td><td>0.3886</td><td>0.4964</td></tr>
+            <tr><td>Popularity (prior)</td><td>Baseline</td><td>6,040</td><td>0.5283</td><td>0.4584</td><td>0.3646</td><td>0.4526</td></tr>
+            <tr><td>LLaRA V2b</td><td>Hybrid LLM</td><td>1,500</td><td>0.5140</td><td>0.4440</td><td>0.3220</td><td>0.4310</td></tr>
+            <tr><td>V1+Pop (α = 0.5)</td><td>KG+Pop</td><td>6,040</td><td>0.4474</td><td>0.3917</td><td>0.3134</td><td>0.3863</td></tr>
+            <tr><td>TALLRec</td><td>LLM (text)</td><td>1,500</td><td>0.3280</td><td>0.2860</td><td>0.2200</td><td>0.2800</td></tr>
+            <tr><td>V3 SBERT</td><td>Text retrieval</td><td>6,040</td><td>0.3417</td><td>0.2507</td><td>0.1444</td><td>0.2472</td></tr>
+            <tr><td>V2 ReLLa-SUBR</td><td>Zero-shot LLM</td><td>6,040</td><td>0.1406</td><td>0.1118</td><td>0.0805</td><td>0.1113</td></tr>
+            <tr><td>LLaRA V2c</td><td>Hybrid LLM</td><td>1,500</td><td>0.1400</td><td>0.1140</td><td>0.1340</td><td>0.1260</td></tr>
+            <tr><td>V1 KG (layer 3)</td><td>Graph CF</td><td>6,040</td><td>0.1097</td><td>0.1035</td><td>0.0951</td><td>0.1030</td></tr>
+            <tr><td>A-LLMRec V3</td><td>LLM-CF adapter</td><td>1,500</td><td>0.0860</td><td>0.0720</td><td>0.0660</td><td>0.0740</td></tr>
+            <tr><td>LLaRA V2a</td><td>Hybrid LLM</td><td>1,500</td><td>0.0260</td><td>0.0180</td><td>0.0460</td><td>0.0270</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section id="density">
+      <h2>sparse users are the easy ones</h2>
+      <p>We expected users with short histories to be the hard case, since that's the cold-start story augmentation is
+        meant to fix. The opposite held for every model we ran. GRU4Rec scores <strong>0.8929</strong> on the sparse
+        stratum and <strong>0.7126</strong> on the dense one, and the popularity prior slopes the same way.</p>
+      <figure>
+        <img src="images/research/density.svg" width="800" height="500"
+          alt="Line chart of HR@10 across sparse, mid and dense user strata for seven models on 6,040 users. Every line falls from left to right. GRU4Rec goes from 0.8929 to 0.7126; popularity from 0.5283 to 0.3646.">
+        <figcaption>HR@10 by interaction-density stratum, all 6,040 users. Sparse is 42 ratings or fewer, dense is more
+          than 206. BERT4Rec and SASRec follow GRU4Rec almost exactly and are left out for legibility. They're in the
+          table above.</figcaption>
+      </figure>
+      <p>Two things cause it. MovieLens-1M only keeps users with at least 20 ratings, so the sparse bin is the low end
+        of a warm population, not a cold one. And with 100 negatives drawn uniformly, a sparse user's held-out film
+        tends to be a mainstream title that's easy to separate from random ones. The gap worth closing is the dense
+        stratum. No augmentation closed it.</p>
+    </section>
+
+    <section id="curriculum">
+      <h2>the curriculum ablation</h2>
+      <p>LLaRA trains in stages: text prompts first, then mixed, then hybrid prompts with collaborative IDs. We held
+        the architecture, data, batch size and epoch budget fixed and changed only the staging.</p>
+      <figure>
+        <img src="images/research/curriculum.svg" width="640" height="440"
+          alt="Bar chart of overall HR@10 for three LLaRA training schedules on 1,500 users: forward curriculum 0.0270, no curriculum 0.4310, reverse curriculum 0.1260. Popularity reference line at 0.4526.">
+        <figcaption>LLaRA overall HR@10 by training schedule, 1,500 users (Table 5.2). <span class="key"></span>Popularity
+          on the full 6,040 users, for reference.</figcaption>
+      </figure>
+      <p>The published forward schedule scored <strong>0.0270</strong>. No curriculum scored <strong>0.4310</strong>,
+        about sixteen times higher, and the reverse order scored 0.1260. The training-loss traces show why: loss
+        collapsed to near zero within the first tenth of each phase, so the model memorized each phase's prompt format,
+        and the next phase overwrote it. That's catastrophic forgetting. By the time the forward run reached the hybrid
+        format used at evaluation, the earlier learning was gone.</p>
+      <p>The LLaRA paper reports curriculum gains on MovieLens-100K, Steam and LastFM. On MovieLens-1M the schedule
+        hurt, so we report it as a negative replication.</p>
+    </section>
+
+    <section id="robustness">
+      <h2>robustness audit</h2>
+      <p>On a memorization split, text-only retrieval (V3+Pop) fell from 0.7895 on popular, likely-memorized films to
+        <strong>0.0414</strong> on rare ones, while LLaRA V2b, which puts collaborative IDs in the prompt, kept
+        <strong>0.2260</strong>. That's the one place augmentation earned its cost.</p>
+      <p>V3+Pop also ignores history order entirely (0.4964 with the sequence shuffled or not), and its confidence
+        scores are badly miscalibrated, with an expected calibration error of 0.3985.</p>
+    </section>
+
+    <section id="limitations">
+      <h2>limitations</h2>
+      <ul>
+        <li>Ranking against 100 sampled negatives inflates absolute hit rates, most of all on sparse users. We rest the
+          conclusions on the ordering between methods, not the absolute numbers.</li>
+        <li>SBERT and the Freebase graph vectors were used as static features, not fine-tuned on recommendation pairs.
+          The knowledge-graph result is about those embeddings, not the full K-RagRec pipeline.</li>
+        <li>We didn't test a classical model given the same semantic features, so "augmentation doesn't help" and
+          "additive augmentation doesn't help" can't be fully separated.</li>
+        <li>The LLM results rest on one backbone (Mistral-7B-Instruct) and one training budget, and our A-LLMRec is a
+          simplified reproduction.</li>
+        <li>Everything is on MovieLens-1M, which is dense and widely memorized. Sparser or text-richer domains may
+          behave differently.</li>
+      </ul>
+    </section>
+
+    <section id="reel-history">
+      <h2>what I built from it</h2>
+      <p>Reel History turns a Letterboxd export into film recommendations. It started as a three-person team
+        MVP, I wrote most of its code, and I kept only what the evidence supported.</p>
+      <ul>
+        <li><strong>A classical model does the ranking.</strong> GRU4Rec won every stratum, so it drives the feed for
+          anyone with a real diary. Visitors with no history get popularity, and those with only a little get the
+          content and collaborative retrievers.</li>
+        <li><strong>No confidence number is shown raw.</strong> With an ECE near 0.40, a raw score would lie, so every
+          card goes through isotonic calibration and shows a label: strong, good, worth a try, or low evidence.</li>
+        <li><strong>Augmentation only where it held up.</strong> The deep-cuts end of the Rewind dial leans on LLaRA's
+          collaborative embeddings, since the hybrid-ID model was the only method that kept signal on rare films.</li>
+        <li><strong>Nothing heavy at serve time.</strong> Every model runs once offline and ships as a static asset.
+          Serving is matrix math and lookups on a free CPU Space.</li>
+      </ul>
+      <p>The live app runs on the larger MovieLens-32M catalog. The numbers on this page are from the thesis, on
+        MovieLens-1M.</p>
+      <div class="links">
+        <a class="btn btn-primary" href="https://huggingface.co/spaces/karthikcr/reel-history" target="_blank"
+          rel="noopener noreferrer">Try Reel History</a>
+        <a class="btn btn-ghost" href="index.html#projects">Other projects</a>
+      </div>
+    </section>
+
+    <footer>
+      Thesis results are from a four-person group study at EPITA (M.Sc. AI Systems). All figures are drawn from the
+      thesis tables by <a href="https://github.com/kikugo/kikugo.github.io/blob/main/results/make_charts.py"
+        target="_blank" rel="noopener noreferrer">one script</a>.
+    </footer>
+
+  </main>
+</body>
+
+</html>
