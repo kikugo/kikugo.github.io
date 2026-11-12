@@ -7,109 +7,157 @@
   <title>Karthik | Recsys research</title>
   <meta name="description"
     content="Results from our master's thesis on LLM-augmented sequential recommendation on MovieLens-1M, and how Reel History uses them.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2317202b%22/><text x=%2216%22 y=%2223%22 text-anchor=%22middle%22 font-family=%22Arial,sans-serif%22 font-weight=%22700%22 font-size=%2220%22 fill=%22%23fff%22>k</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
+    /* Same tokens as index.html. The charts are drawn on #0a0a0a by
+       results/make_charts.py, so figures sit on a matching dark plate. */
+    :root {
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --border: #d8dee6;
+      --text: #17202b;
+      --muted: #536072;
+      --accent: #2340c4;
+      --plate: #0a0a0a;
+      --plate-line: #262626;
+      --plate-text: #a3a3a3;
+      --ref: #e8a33d;
+      --measure: 40rem;
+      --wide: 52rem;
+      --nav-h: 3.5rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121820;
+        --surface: #19212b;
+        --border: #2c3744;
+        --text: #e9eef4;
+        --muted: #9aa7b6;
+        --accent: #93a6ff;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
-    :root {
-      --bg: #0a0a0a;
-      --surface: #141414;
-      --border: #262626;
-      --text: #fafafa;
-      --muted: #a3a3a3;
-      --accent: #ffffff;
-      --ref: #e8a33d;
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-padding-top: calc(var(--nav-h) + 1rem);
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    main {
-      max-width: 42rem;
+    a {
+      color: inherit;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .wrap {
+      max-width: var(--wide);
       margin: 0 auto;
-      padding: 4rem 1.5rem 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bar .wrap {
+      max-width: 68rem;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .bar .home {
+      font-weight: 800;
+      font-size: 1.0625rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      margin-right: auto;
+    }
+
+    .bar nav {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9375rem;
+    }
+
+    .bar nav a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .bar nav a:hover,
+    .bar nav a[aria-current] {
+      color: var(--text);
+    }
+
+    main.wrap {
+      padding-top: 4rem;
+      padding-bottom: 2rem;
     }
 
     section {
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    section:nth-child(2) {
-      animation-delay: 0.1s;
-    }
-
-    section:nth-child(3) {
-      animation-delay: 0.2s;
-    }
-
-    section:nth-child(n+4) {
-      animation-delay: 0.3s;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      section {
-        animation: none;
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    .back {
-      display: inline-block;
-      margin-bottom: 2.5rem;
-      font-size: 0.8125rem;
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      transition: color 0.15s, border-color 0.15s;
-    }
-
-    .back:hover {
-      color: var(--text);
-      border-bottom-color: var(--text);
+      margin-bottom: 3.5rem;
     }
 
     h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
+      font-size: clamp(2.25rem, 6vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
     }
 
     h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       margin-bottom: 1rem;
     }
 
     p,
     li {
-      color: var(--muted);
-      font-size: 0.875rem;
+      max-width: var(--measure);
     }
 
     p {
@@ -117,50 +165,47 @@
     }
 
     strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    a {
-      color: var(--text);
+      font-weight: 700;
     }
 
     .lede {
-      font-size: 1rem;
+      font-size: 1.1875rem;
+      line-height: 1.5;
     }
 
+    /* Headline numbers as a ruled list, same as the results list on the home page. */
     .stats {
+      list-style: none;
+      margin-top: 1.75rem;
+      border-top: 2px solid var(--text);
+      max-width: none;
+      padding-left: 0;
+    }
+
+    .stats li {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin-top: 1.5rem;
+      grid-template-columns: 7rem minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      margin: 0;
+      border-bottom: 1px solid var(--border);
+      max-width: none;
     }
 
-    .stat {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 0.5rem;
-      padding: 0.875rem 1rem;
+    .stats b {
+      font-size: 1.375rem;
+      font-weight: 800;
     }
 
-    .stat b {
-      display: block;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .stat span {
-      font-size: 0.75rem;
+    .stats span {
       color: var(--muted);
     }
 
     figure {
-      margin: 1.5rem 0;
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      background: var(--bg);
+      margin: 1.75rem 0;
+      background: var(--plate);
+      border-radius: 6px;
       overflow: hidden;
     }
 
@@ -171,10 +216,11 @@
     }
 
     figcaption {
-      padding: 0.75rem 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--muted);
+      padding: 0.75rem 1rem 0.9rem;
+      border-top: 1px solid var(--plate-line);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--plate-text);
     }
 
     .key {
@@ -191,41 +237,44 @@
       margin-bottom: 1rem;
     }
 
-    li {
-      margin-bottom: 0.5rem;
+    ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    ul li::marker {
+      color: var(--accent);
     }
 
     details {
       margin-top: 1rem;
-      font-size: 0.8125rem;
+      font-size: 0.9375rem;
     }
 
     summary {
       cursor: pointer;
-      color: var(--muted);
+      font-weight: 600;
     }
 
     summary:hover {
-      color: var(--text);
+      color: var(--accent);
     }
 
     .table-wrap {
       overflow-x: auto;
       margin-top: 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
+      border-top: 2px solid var(--text);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       font-variant-numeric: tabular-nums;
     }
 
     th,
     td {
-      padding: 0.4rem 0.6rem;
+      padding: 0.45rem 0.6rem;
       text-align: right;
       white-space: nowrap;
       border-bottom: 1px solid var(--border);
@@ -236,84 +285,110 @@
       text-align: left;
     }
 
+    th:first-child,
+    td:first-child {
+      padding-left: 0;
+    }
+
     th {
       color: var(--muted);
       font-weight: 600;
-      background: var(--surface);
-    }
-
-    td {
-      color: var(--text);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
     }
 
     .links {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-top: 1.25rem;
+      margin-top: 1.5rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       height: 2.5rem;
-      padding: 0 1.25rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      border-radius: calc(0.5rem - 2px);
+      padding: 0 1.1rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: 4px;
       text-decoration: none;
-      transition: background 0.15s, border-color 0.15s;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: var(--text);
       color: var(--bg);
     }
 
     .btn-primary:hover {
-      background: rgba(255, 255, 255, 0.9);
+      background: var(--accent);
+      color: var(--bg);
     }
 
     .btn-ghost {
       border: 1px solid var(--border);
-      color: var(--text);
     }
 
     .btn-ghost:hover {
-      border-color: var(--text);
+      border-color: var(--accent);
     }
 
-    footer {
+    footer.wrap {
       border-top: 1px solid var(--border);
       padding-top: 1.5rem;
-      font-size: 0.75rem;
+      padding-bottom: 3rem;
+      font-size: 0.875rem;
       color: var(--muted);
     }
 
     @media (max-width: 640px) {
-      main {
-        padding: 2.5rem 1rem 3rem;
+      .wrap {
+        padding: 0 1rem;
       }
 
-      h1 {
-        font-size: 2rem;
+      .bar nav {
+        gap: 0.9rem;
+        font-size: 0.875rem;
       }
 
-      .stats {
-        grid-template-columns: 1fr;
+      main.wrap {
+        padding-top: 2.5rem;
+      }
+
+      .lede {
+        font-size: 1.0625rem;
+      }
+
+      .stats li {
+        grid-template-columns: 5.5rem minmax(0, 1fr);
+        gap: 1rem;
+      }
+
+      .stats b {
+        font-size: 1.125rem;
+      }
+
+      figure {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
       }
     }
   </style>
 </head>
 
 <body>
-  <main>
+  <header class="bar">
+    <div class="wrap">
+      <a class="home" href="index.html">Karthik</a>
+      <nav aria-label="Site">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#work">Work</a>
+        <a href="research.html" aria-current="page">Research</a>
+        <a href="Resume.pdf" download>CV</a>
+      </nav>
+    </div>
+  </header>
 
-    <a class="back" href="index.html">&larr; karthik</a>
+  <main class="wrap">
 
     <section id="question">
       <h1>do LLMs help a recommender?</h1>
@@ -324,11 +399,11 @@
       </p>
       <p>Short version: on this dataset, no. A tuned classical model beat every augmented one, and the best augmented
         method only matched recommending popular films.</p>
-      <div class="stats">
-        <div class="stat"><b>0.8119</b><span>GRU4Rec, best of 16</span></div>
-        <div class="stat"><b>0.4526</b><span>popularity prior</span></div>
-        <div class="stat"><b>0.4310</b><span>best fine-tuned LLM</span></div>
-      </div>
+      <ul class="stats">
+        <li><b>0.8119</b><span>GRU4Rec, best of 16</span></li>
+        <li><b>0.4526</b><span>popularity prior</span></li>
+        <li><b>0.4310</b><span>best fine-tuned LLM</span></li>
+      </ul>
     </section>
 
     <section id="configs">
@@ -465,13 +540,13 @@
       </div>
     </section>
 
-    <footer>
+  </main>
+
+  <footer class="wrap">
       Thesis results are from a four-person group study at EPITA (M.Sc. AI Systems). All figures are drawn from the
       thesis tables by <a href="https://github.com/kikugo/kikugo.github.io/blob/main/results/make_charts.py"
         target="_blank" rel="noopener noreferrer">one script</a>.
-    </footer>
-
-  </main>
+  </footer>
 </body>
 
 </html>
