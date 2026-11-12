@@ -328,12 +328,11 @@
       padding-top: 0;
     }
 
-    /* Screenshot slot. To add an image, replace the <span> inside .shot with
-       <img src="images/projects/NAME.png" alt="..." width="1600" height="1000" loading="lazy">
-       and drop the "pending" class. */
+    /* Project image: 1600px wide, cropped to 16:10 from the top-left. */
     .shot {
       aspect-ratio: 16 / 10;
       background: var(--plate);
+      border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
       display: grid;
@@ -346,17 +345,6 @@
       object-fit: cover;
       object-position: top left;
       display: block;
-    }
-
-    .shot.pending {
-      background-color: var(--plate);
-      background-image: radial-gradient(var(--plate-line) 1px, transparent 1.2px);
-      background-size: 16px 16px;
-    }
-
-    .shot.pending span {
-      font-size: 0.8125rem;
-      color: var(--plate-text);
     }
 
     .project h3 {
@@ -750,7 +738,8 @@
         <h2>Projects</h2>
 
         <article id="proj-droit-du-travail-copilot" class="project">
-          <figure class="shot pending"><span>Screenshot to come</span></figure>
+          <figure class="shot"><img src="images/projects/droit-du-travail-copilot.webp" alt="Droit du Travail Copilot answering a labour-law question, with the cited articles shown as margin notes" width="1600" height="1075"
+              loading="lazy"></figure>
           <div>
             <h3>Droit du Travail Copilot</h3>
             <p class="what">French labour-law agent on Azure AI Foundry.</p>
@@ -769,7 +758,8 @@
         </article>
 
         <article id="proj-reel-history" class="project">
-          <figure class="shot pending"><span>Screenshot to come</span></figure>
+          <figure class="shot"><img src="images/projects/reel-history.webp" alt="Reel History home page: a trending film marquee and a drop zone for a Letterboxd export" width="1600" height="1000"
+              loading="lazy"></figure>
           <div>
             <h3>Reel History</h3>
             <p class="what">Film recommendations from your Letterboxd diary, over an 87,000-film catalog.</p>
@@ -793,7 +783,8 @@
         </article>
 
         <article id="proj-unified-rag" class="project">
-          <figure class="shot pending"><span>Screenshot to come</span></figure>
+          <figure class="shot"><img src="images/projects/unified-rag.webp" alt="Unified RAG app with a sidebar for adding PDFs, images, audio and video, and an empty library ready for sample charts" width="1600" height="1001"
+              loading="lazy"></figure>
           <div>
             <h3>Unified RAG</h3>
             <p class="what">Multimodal RAG over text, images, audio, and video, with an eval harness and CI gate.</p>
@@ -811,7 +802,8 @@
         </article>
 
         <article id="proj-agentops-harness" class="project">
-          <figure class="shot pending"><span>Screenshot to come</span></figure>
+          <figure class="shot"><img src="images/projects/agentops-harness.webp" alt="Chart of attacks blocked per OWASP LLM category with and without guardrails, and false refusals falling from 4.7% to 2.4%" width="1600" height="1000"
+              loading="lazy"></figure>
           <div>
             <h3>AgentOps Harness</h3>
             <p class="what">Red-teams, guards and gates the Droit du Travail Copilot.</p>
@@ -828,7 +820,8 @@
         </article>
 
         <article id="proj-paris-bike-forecasting" class="project">
-          <figure class="shot pending"><span>Screenshot to come</span></figure>
+          <figure class="shot"><img src="images/projects/paris-bike-forecasting.webp" alt="Chart of a 7-day hourly LightGBM forecast with its 80% interval against observed counts for one Paris counter" width="1600" height="1000"
+              loading="lazy"></figure>
           <div>
             <h3>Paris Bike Forecasting</h3>
             <p class="what">Hourly forecasts for 95 Paris counters.</p>
@@ -845,7 +838,8 @@
         </article>
 
         <article id="proj-medquery" class="project">
-          <figure class="shot pending"><span>Screenshot to come</span></figure>
+          <figure class="shot"><img src="images/projects/medquery.webp" alt="Diagram of MedQuery: BM25 and FAISS retrieval merged with RRF, feeding four agents, plus an MCP server" width="1600" height="1000"
+              loading="lazy"></figure>
           <div>
             <h3>MedQuery</h3>
             <p class="what">Medical Q&amp;A over drug guidelines.</p>
