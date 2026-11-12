@@ -84,14 +84,50 @@ export const PROFILE = {
   // points the assistant can draw on when someone asks how it actually works).
   projects: [
     {
+      id: 'droit-du-travail-copilot',
+      title: 'Droit du Travail Copilot',
+      url: 'https://github.com/kikugo/droit-du-travail-copilot',
+      demo: 'https://ddt-api-57nmb.mangosand-3751fcc9.swedencentral.azurecontainerapps.io',
+      tech: ['Azure AI Foundry', 'Azure AI Search', 'Microsoft Agent Framework', 'Terraform', 'FastAPI'],
+      blurb:
+        'A French labour-law agent on Azure AI Foundry. On 100 model-reviewed questions, 98% of ' +
+        'answers cite a correct article, every out-of-scope question is refused, and 2% are false refusals.',
+      details: [
+        'Answers in French from the Code du travail and two collective agreements (Syntec and HCR), citing each article with its Légifrance link. When the sources do not cover a question it refuses instead of guessing. It is not legal advice.',
+        'Built on Azure AI Foundry, with Azure AI Search for hybrid retrieval, Microsoft Agent Framework for the agent, and Terraform for all the Azure infrastructure.',
+        'Runs as a FastAPI app with a small web page on Azure Container Apps, scaling to zero when idle. It signs in to Foundry and Search with a managed identity that only has read roles, so there are no keys to leak.',
+        'Every pull request runs a smoke eval against the live Azure resources, and the CI gate fails the PR if answers lose their citations or a refusal regresses.',
+        'Each request is traced with OpenTelemetry, with a span per tool call, while the question and answer text stay out of telemetry.',
+      ],
+    },
+    {
+      id: 'reel-history',
+      title: 'Reel History',
+      url: 'https://github.com/kikugo/reel-history-k8s',
+      demo: 'https://huggingface.co/spaces/karthikcr/reel-history',
+      tech: ['GRU4Rec', 'SBERT', 'LLaRA', 'Kubernetes', 'Helm', 'Terraform', 'AKS', 'Qwen3-8B', 'AWQ'],
+      blurb:
+        'Film recommendations from your Letterboxd diary, over an 87,000-film catalog, using GRU4Rec + ' +
+        'SBERT + LLaRA with calibrated confidence. Runs on Kubernetes, with a self-quantized Qwen3-8B ' +
+        'explainer: AWQ gives 2.8x throughput and 9.6 GiB less weight memory than BF16.',
+      details: [
+        'You drop in a Letterboxd export and every title gets a recommendation with an honest, calibrated confidence label instead of a raw score.',
+        'The design came out of his master\'s thesis, a four-person group study at EPITA on whether LLM augmentation helps sequential recommendation. A tuned classical model, GRU4Rec, beat every augmented one, so GRU4Rec does the ranking for anyone with a real diary. The research page on the site has the full results.',
+        'Augmentation is only used where it held up: LLaRA\'s collaborative embeddings help with rare films, the one place the thesis found it earned its cost.',
+        'A "why this film" explainer runs on Qwen3-8B that he quantized himself to 4-bit weights. AWQ gives 2.8x throughput and 9.6 GiB less weight memory than the BF16 model, and the quantized models are published on his Hugging Face account.',
+        'The recommender and the explainer are deployed on Kubernetes with Helm charts, and Terraform provisions the cluster on Azure Kubernetes Service (AKS).',
+      ],
+    },
+    {
       id: 'unified-rag',
       title: 'Unified RAG',
       url: 'https://github.com/kikugo/unified-rag',
       demo: 'https://unified-rag.streamlit.app/',
       tech: ['Python', 'Gemini', 'ChromaDB', 'Streamlit'],
       blurb:
-        'Multimodal RAG over text, images, audio and video in one pipeline, with ' +
-        'hybrid routing between a local vector store and a managed backend.',
+        'Multimodal RAG over text, images, audio and video, with an eval harness and CI gate. ' +
+        'Hybrid BM25 + dense retrieval with reranking raised hit@1 from 0.59 to 0.70 on a ' +
+        '100-question golden set.',
       details: [
         'Local retrieval is genuinely hybrid: for each query it pulls a dense vector candidate pool from ChromaDB, runs a hand-written BM25 (k1=1.5, b=0.75) over the indexed chunks, and fuses the two with reciprocal rank fusion (k=60), passing the fused top-K (not just the top hit) to the model with citation markers.',
         'Ingests four modalities into one Gemini embedding space: images (EXIF-stripped and resized), PDFs (overlapping page chunks, text kept for BM25), audio (decoded to WAV and sliced into ~80s windows with per-chunk speech-to-text), and video (adaptive frame sampling with scene-change dedup, each frame inheriting its window transcript).',
@@ -100,6 +136,40 @@ export const PROFILE = {
         'Content-addressed storage (SHA-256) skips re-embedding identical uploads, keeps one registry row per file with all its chunk ids, and cleans up every artifact on delete.',
         'An offline eval harness measures recall@k against a 151-passage, 50-query gold set with cached embeddings, so all three retrieval arms can be regression-checked in CI without an API key.',
         'The published ablation is deliberately unflattering: on the headline number dense alone beats the hybrid it ships with. Splitting by query type shows why, and passage length turned out to be the variable that matters. Dense finds exact identifiers at 0.941 recall@1 in 11-word passages but only 0.471 at 128 words, while BM25 holds 1.000 in both, because one vector has to stand in for the whole passage and a serial number gets averaged away. On one-line documents dense looks flawless and the entire argument for BM25 disappears.',
+      ],
+    },
+    {
+      id: 'agentops-harness',
+      title: 'AgentOps Harness',
+      url: 'https://github.com/kikugo/agentops-harness',
+      tech: ['garak', 'PyRIT', 'NeMo Guardrails', 'Langfuse', 'OWASP LLM Top 10'],
+      blurb:
+        'Red-teams, guards and gates the Droit du Travail Copilot. 72 attacks across 6 OWASP LLM ' +
+        'categories in English and French; guardrails halved false refusals (4.7% to 2.4%) without ' +
+        'lowering attack success.',
+      details: [
+        'Attacks his own Copilot with garak and PyRIT through a small adapter that makes the agent look like any chat model, then adds NeMo Guardrails and measures attack success, false refusals and the latency cost of the rails.',
+        'The fixed attack suite gates pull requests, so a change that makes the agent easier to attack fails CI.',
+        'Every request is one trace in a self-hosted Langfuse, tagged with the attack id and campaign all the way down to each tool call and search query.',
+        'Honest result: the guardrails halved false refusals but did not lower attack success, and the README reports that plainly.',
+        'Every attack targets systems he owns, and the poisoned test documents live in a separate search index that the demo never uses.',
+      ],
+    },
+    {
+      id: 'paris-bike-forecasting',
+      title: 'Paris Bike Forecasting',
+      url: 'https://github.com/kikugo/paris-bike-forecast',
+      tech: ['LightGBM', 'Airflow', 'Great Expectations', 'Postgres', 'MLflow', 'FastAPI', 'Grafana'],
+      blurb:
+        'Hourly forecasts for 95 Paris bike counters. LightGBM beats seasonal-naive by 16.5% MAE over ' +
+        '8 rolling folds, with 79% coverage for 80% intervals.',
+      details: [
+        'Forecasts hourly bike traffic at the City of Paris permanent counters a week ahead, with quantile intervals around each forecast.',
+        'Evaluated with rolling-origin backtests: each fold trains on everything before its cutoff and is scored on the following week, against seasonal-naive baselines.',
+        'Airflow DAGs ingest the counts, weather and school and public holidays, Great Expectations validates each load before it reaches Postgres, MLflow tracks runs and promotes a champion model, and FastAPI serves the forecasts.',
+        'Grafana dashboards cover data quality and model monitoring, including drift checks on daily scores.',
+        'Known limitation he documents: the intervals fall short of their target in a school-holiday week.',
+        'A from-scratch rewrite of a coursework project; nothing is copied from the original course repo.',
       ],
     },
     {
@@ -121,6 +191,7 @@ export const PROFILE = {
       id: 'menu-vision',
       title: 'Menu Vision',
       url: 'https://github.com/kikugo/menu-vision',
+      demo: 'https://menu-vision-ai.streamlit.app/',
       tech: ['Python', 'Gemini 3.1 Flash Image', 'Streamlit'],
       blurb:
         'Turns a menu photo into a browsable, photo-rich version. OCR pulls the ' +
@@ -231,7 +302,7 @@ voice
 what you know
 - everything you can talk about is in the profile you were given: about, experience, projects, skills, education, languages, links, highlights. treat that as the complete set of facts about karthik.
 - each project has a short blurb plus a deeper "details" list. for a quick mention use the blurb; when someone wants to know how a project actually works or asks something technical, draw on that project's details and explain it clearly in plain language. keep it conversational, not a spec dump.
-- two projects have a "demo" field with a link you can actually try in the browser. if someone asks whether they can try something, play with it, or see it running, point them at those. never say a project has a live demo unless it has that field.
+- some projects have a "demo" field with a link you can actually try in the browser. if someone asks whether they can try something, play with it, or see it running, point them at those. never say a project has a live demo unless it has that field.
 - do not invent or guess real facts. no made-up numbers, dates, employers, tools, or claims about his work. if a work detail isn't in the profile, don't fabricate it.
 - if someone asks about a company, role, project, or figure that is not in the profile, don't speculate. deflect with a little personality (see "off topic" below) and steer back to what he has actually shipped.
 
