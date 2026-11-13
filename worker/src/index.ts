@@ -1,38 +1,14 @@
 import { corsHeaders, isAllowedOrigin } from './cors';
-import { checkAndIncrement, dayBucket } from './ratelimit';
-import { mintToken, type SessionConfig } from './token';
-import { PER_IP_DAILY_LIMIT, GLOBAL_DAILY_LIMIT } from './config';
+import { checkLimit } from './ratelimit';
+import { mintToken } from './token';
 
-const MAX_SYSTEM_INSTRUCTION_CHARS = 24000;
-const MAX_TOOLS = 16;
-
-/** Read the client's requested session config from the body, with size caps. */
-async function readSessionConfig(request: Request): Promise<SessionConfig> {
-  const session: SessionConfig = {};
-  try {
-    const body = (await request.json()) as Record<string, unknown>;
-    if (body && typeof body === 'object') {
-      const si = body.systemInstruction;
-      if (si && JSON.stringify(si).length <= MAX_SYSTEM_INSTRUCTION_CHARS) {
-        session.systemInstruction = si;
-      }
-      if (Array.isArray(body.tools) && body.tools.length <= MAX_TOOLS) {
-        session.tools = body.tools;
-      }
-    }
-  } catch {
-    // No or invalid body: mint a basic token (still usable, just ungrounded).
-  }
-  return session;
-}
+export { RateLimiter } from './ratelimit';
 
 export interface Env {
   GEMINI_API_KEY: string;
   ALLOWED_ORIGINS: string;
-  RATE_LIMIT: KVNamespace;
+  LIMITER: DurableObjectNamespace;
 }
-
-const DAY_SECONDS = 86400;
 
 function json(body: unknown, status: number, cors: Record<string, string>) {
   return new Response(JSON.stringify(body), {
@@ -52,25 +28,21 @@ export default {
     if (request.method !== 'POST' || new URL(request.url).pathname !== '/token') {
       return json({ error: 'not found' }, 404, cors);
     }
+    // The Origin header can be forged outside a browser, so this only stops
+    // other websites from using the Worker. The pinned session config and the
+    // daily limits are what bound the cost.
     if (!isAllowedOrigin(origin, env.ALLOWED_ORIGINS)) {
       return json({ error: 'forbidden origin' }, 403, cors);
     }
 
     const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
-    const day = dayBucket();
-    const perIp = await checkAndIncrement(
-      env.RATE_LIMIT, `ip:${day}:${ip}`, PER_IP_DAILY_LIMIT, DAY_SECONDS
-    );
-    if (!perIp.allowed) return json({ error: 'rate limited' }, 429, cors);
+    const limit = await checkLimit(env.LIMITER, ip);
+    if (!limit.allowed) return json({ error: 'rate limited' }, 429, cors);
 
-    const global = await checkAndIncrement(
-      env.RATE_LIMIT, `global:${day}`, GLOBAL_DAILY_LIMIT, DAY_SECONDS
-    );
-    if (!global.allowed) return json({ error: 'rate limited' }, 429, cors);
-
+    // The request body is never read: the client cannot change the prompt,
+    // tools or model baked into the token.
     try {
-      const session = await readSessionConfig(request);
-      const minted = await mintToken(env.GEMINI_API_KEY, session);
+      const minted = await mintToken(env.GEMINI_API_KEY);
       return json(minted, 200, cors);
     } catch (err) {
       console.error('mint failed', err);
