@@ -1,7 +1,5 @@
-import { ConciergeUI } from './ui.js';
-import { LiveSession } from './session.js';
-import { PROFILE } from './knowledge.js';
-import { MAX_SESSION_MS } from './config.js';
+// Only the small trigger wiring loads with the page. The UI, the session and the
+// Gemini SDK behind it are fetched on first open.
 
 function supported() {
   return (
@@ -24,30 +22,50 @@ function init() {
 
   let session = null;
   let sessionTimer = null;
+  let ui = null;
+  let mods = null;
+  let returnFocus = null;
 
-  const ui = new ConciergeUI({
-    onMic: () => startMic(),
-    onText: (t) => session?.sendText(t),
-    onEnd: () => end(),
-  });
+  async function load() {
+    if (!mods) {
+      const [{ ConciergeUI }, { LiveSession }, { PROFILE }, { MAX_SESSION_MS }] = await Promise.all([
+        import('./ui.js'), import('./session.js'), import('./knowledge.js'), import('./config.js'),
+      ]);
+      mods = { LiveSession, PROFILE, MAX_SESSION_MS };
+      ui = new ConciergeUI({
+        onMic: () => startMic(),
+        onText: (t) => session?.sendText(t),
+        onEnd: () => end(),
+      });
+    }
+    return mods;
+  }
 
-  async function start() {
+  async function start(e) {
+    if (session) return;
+    returnFocus = e?.currentTarget ?? document.activeElement;
+    let m;
+    try {
+      m = await load();
+    } catch {
+      return; // network hiccup loading the widget; the static page still works
+    }
     if (session) return;
     ui.open();
     ui.setState('connecting');
-    session = new LiveSession({
+    session = new m.LiveSession({
       onState: (s) => ui.setState(s),
       onCaption: (who, text) => ui.setCaption(who, text),
       onToolAction: (a) => {
         if (a.action === 'scroll') highlight(a.domId);
-        if (a.action === 'downloadCV') window.open(PROFILE.cvUrl, '_blank');
+        if (a.action === 'downloadCV') window.open(m.PROFILE.cvUrl, '_blank');
       },
-      onError: (m) => ui.setCaption('ai', 'sorry, something went wrong: ' + m),
+      onError: (msg) => ui.setCaption('ai', 'sorry, something went wrong: ' + msg),
     });
     try {
       await session.connect();
-      sessionTimer = setTimeout(() => end(), MAX_SESSION_MS);
-    } catch (e) {
+      sessionTimer = setTimeout(() => end(), m.MAX_SESSION_MS);
+    } catch (err) {
       session?.close();
       session = null;
       ui.setCaption('ai', 'could not connect right now. try again later.');
@@ -68,9 +86,16 @@ function init() {
     clearTimeout(sessionTimer);
     session?.close();
     session = null;
+    if (!ui) return;
     ui.setMicMode(false);
     ui.close();
+    if (returnFocus && typeof returnFocus.focus === 'function') returnFocus.focus();
+    returnFocus = null;
   }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && ui?.isOpen()) end();
+  });
 
   // Triggers: wire every element marked data-concierge; if none, inject a floating one.
   const triggers = document.querySelectorAll('[data-concierge]');
