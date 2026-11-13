@@ -14,10 +14,10 @@ export class ConciergeUI {
     this.overlay = document.createElement('div');
     this.overlay.className = 'concierge-overlay';
     this.overlay.innerHTML = `
-      <div class="concierge-panel" data-state="idle" role="dialog" aria-label="AI portfolio guide">
+      <div class="concierge-panel" data-state="idle" role="dialog" aria-modal="false" aria-label="AI portfolio guide" tabindex="-1">
         <div class="concierge-orb"></div>
-        <div class="concierge-status"></div>
-        <div class="concierge-caption"></div>
+        <div class="concierge-status" role="status" aria-live="polite"></div>
+        <div class="concierge-caption" aria-live="polite"></div>
         <div class="concierge-controls">
           <button class="mic" type="button">🎙 start</button>
           <button class="end" type="button">end</button>
@@ -48,7 +48,11 @@ export class ConciergeUI {
     });
   }
 
-  open() { this.overlay.dataset.open = 'true'; }
+  open() {
+    this.overlay.dataset.open = 'true';
+    this.input.focus({ preventScroll: true });
+  }
+  isOpen() { return this.overlay.dataset.open === 'true'; }
   close() { this.overlay.dataset.open = 'false'; }
   setState(state) {
     this.panel.dataset.state = state;

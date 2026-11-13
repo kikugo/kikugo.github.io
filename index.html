@@ -4,1047 +4,1121 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Karthik | AI Engineer</title>
+  <title>Karthik Reddy Changal | AI Engineer, Paris</title>
   <meta name="description"
-    content="Portfolio of Karthik, AI Engineer in Paris working on LLMs, RAG, and agentic systems, with measured results for each project.">
-  <meta name="color-scheme" content="light dark">
+    content="Karthik Reddy Changal, AI engineer in Paris building LLM, RAG and agentic systems. Projects include a French labour-law copilot and a film recommender running on Kubernetes.">
+  <link rel="canonical" href="https://kikugo.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Karthik Reddy Changal | AI Engineer, Paris">
+  <meta property="og:description" content="AI engineer in Paris building LLM, RAG and agentic systems.">
+  <meta property="og:url" content="https://kikugo.github.io/">
+  <meta property="og:image" content="https://kikugo.github.io/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="hi, karthik here. AI Engineer in Paris.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Karthik Reddy Changal | AI Engineer, Paris">
+  <meta name="twitter:description" content="AI engineer in Paris building LLM, RAG and agentic systems.">
+  <meta name="twitter:image" content="https://kikugo.github.io/images/og.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Karthik Reddy Changal",
+    "jobTitle": "AI Engineer",
+    "url": "https://kikugo.github.io/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "EPITA" },
+      { "@type": "CollegeOrUniversity", "name": "Padmasri Dr. B. V. Raju Institute of Technology" }
+    ],
+    "sameAs": ["https://github.com/kikugo", "https://www.linkedin.com/in/ckarthikr"]
+  }
+  </script>
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2317202b%22/><text x=%2216%22 y=%2223%22 text-anchor=%22middle%22 font-family=%22Arial,sans-serif%22 font-weight=%22700%22 font-size=%2220%22 fill=%22%23fff%22>k</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+  <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assistant/assistant.css" />
   <style>
-    /* Tokens. --bg/--surface/--border/--text/--muted are also read by the
-       assistant widget (assistant/assistant.css), so keep those names. */
-    :root {
-      --bg: #f5f7fa;
-      --surface: #ffffff;
-      --border: #d8dee6;
-      --text: #17202b;
-      --muted: #536072;
-      --accent: #2340c4;
-      --plate: #0a0a0a;
-      --plate-line: #262626;
-      --plate-text: #a3a3a3;
-      --concierge-accent: #2340c4;
-      --measure: 40rem;
-      --wide: 68rem;
-      --nav-h: 3.5rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121820;
-        --surface: #19212b;
-        --border: #2c3744;
-        --text: #e9eef4;
-        --muted: #9aa7b6;
-        --accent: #93a6ff;
-        --plate: #0a0a0a;
-        --plate-line: #2a2f36;
-        --concierge-accent: #93a6ff;
-      }
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/inter-latin-wght-normal.woff2') format('woff2');
+      font-weight: 100 900;
+      font-display: swap;
     }
 
     * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    html {
-      scroll-padding-top: calc(var(--nav-h) + 1rem);
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      html {
-        scroll-behavior: smooth;
-      }
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #262626;
+      --text: #fafafa;
+      --muted: #a3a3a3;
+      --accent: #ffffff;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-      font-size: 1rem;
-      line-height: 1.55;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: 120px;
     }
 
-    /* Tabular figures only where numbers line up; in running text they widen commas. */
-    .timeline time {
+    main {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 3rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    section:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    section:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    section:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    section:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .hero-text .age {
+      display: inline-block;
       font-variant-numeric: tabular-nums;
     }
 
-    a {
-      color: inherit;
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-      border-radius: 2px;
-    }
-
-    .skip {
-      position: absolute;
-      left: 1rem;
-      top: -3rem;
-      background: var(--text);
-      color: var(--bg);
-      padding: 0.5rem 0.75rem;
-      z-index: 100;
-    }
-
-    .skip:focus {
-      top: 0.5rem;
-    }
-
-    .wrap {
-      max-width: var(--wide);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ---------- top bar ---------- */
-    .bar {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .bar .wrap {
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .bar .home {
-      font-weight: 800;
-      font-size: 1.0625rem;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      margin-right: auto;
-    }
-
-    .bar nav {
-      display: flex;
-      gap: 1.25rem;
-      font-size: 0.9375rem;
-    }
-
-    .bar nav a {
-      text-decoration: none;
-      color: var(--muted);
-    }
-
-    .bar nav a:hover {
-      color: var(--text);
-    }
-
-    .ask {
-      font: inherit;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--surface);
-      background: var(--text);
-      border: 0;
-      border-radius: 4px;
-      padding: 0.4rem 0.75rem;
-      cursor: pointer;
-    }
-
-    .ask:hover {
-      background: var(--accent);
-    }
-
-    /* ---------- hero ---------- */
-    .hero {
-      padding: 4.5rem 0 3rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 9vw, 6.5rem);
-      font-weight: 800;
-      letter-spacing: -0.045em;
-      line-height: 0.92;
-    }
-
-    .hero .role {
-      margin-top: 1.25rem;
-      font-size: clamp(1.125rem, 2.2vw, 1.375rem);
-      line-height: 1.4;
-      max-width: 34rem;
-    }
-
-    .hero .age {
-      margin-top: 0.75rem;
-      color: var(--muted);
-      font-size: 0.875rem;
-    }
-
-    .hero .actions {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
-      align-items: center;
-      font-size: 0.9375rem;
-    }
-
     .avatar {
-      width: 8.5rem;
-      height: 8.5rem;
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--surface);
+      width: 7rem;
+      height: 7rem;
+      border-radius: 9999px;
       border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--muted);
+      flex-shrink: 0;
+      overflow: hidden;
     }
 
     .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
-    /* Plain links with a visible underline in the accent colour. */
-    .link {
-      color: var(--text);
-      text-decoration: underline;
-      text-decoration-color: var(--accent);
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
 
-    .link:hover {
-      color: var(--accent);
-    }
-
-    /* ---------- results ledger ---------- */
-    .ledger {
-      padding-bottom: 4rem;
-    }
-
-    .ledger h2 {
-      font-size: 0.9375rem;
-      font-weight: 600;
+    p {
       color: var(--muted);
-      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
     }
 
-    .ledger ol {
-      list-style: none;
-      border-top: 2px solid var(--text);
+    .work-item,
+    .edu-item {
+      margin-bottom: 1.5rem;
     }
 
-    .ledger li {
-      display: grid;
-      grid-template-columns: 14rem minmax(0, 1fr);
-      gap: 1.5rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: baseline;
+    .work-item:last-child,
+    .edu-item:last-child {
+      margin-bottom: 0;
     }
 
-    .ledger li a {
+    .work-header,
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+      gap: 1rem;
+    }
+
+    .work-header-left,
+    .edu-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .company-logo,
+    .school-logo {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.375rem;
+      object-fit: contain;
+      background: var(--surface);
+      padding: 0.25rem;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .work-header h3,
+    .edu-header h3 {
+      font-size: 0.875rem;
       font-weight: 600;
+      color: var(--text);
+      min-width: 0;
+      flex: 1;
+    }
+
+    .work-header time,
+    .edu-header time {
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .work-title,
+    .edu-degree {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .work-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.125rem 0.625rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: calc(0.5rem - 2px);
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      transition: background 0.15s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      overflow: hidden;
+      transition: all 0.15s;
+    }
+
+    .project-card {
+      position: relative;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      border-color: #3a3a3a;
+    }
+
+    .project-card:focus-within {
+      border-color: #525252;
+    }
+
+    /* The title link stretches over the whole card; the other links sit above it. */
+    .project-content h3 a {
+      color: inherit;
       text-decoration: none;
     }
 
-    .ledger li a:hover {
-      color: var(--accent);
-      text-decoration: underline;
+    .project-content h3 a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
     }
 
-    .ledger .claim {
-      font-size: 1.1875rem;
-      line-height: 1.4;
+    .project-content h3 a:focus-visible {
+      outline: none;
     }
 
-    .ledger .claim b {
-      font-weight: 800;
+    .project-card:has(h3 a:focus-visible) {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
     }
 
-    .ledger .claim small {
+    .project-links a:focus-visible,
+    .dock-item:focus-visible,
+    .email-btn:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
+
+    .project-links {
+      position: relative;
+      z-index: 2;
+    }
+
+    .project-shot {
       display: block;
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
-    }
-
-    /* ---------- sections ---------- */
-    .section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section>.wrap>h2,
-    .section-head {
-      font-size: 1.75rem;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      margin-bottom: 2rem;
-    }
-
-    .prose {
-      max-width: var(--measure);
-    }
-
-    .prose p+p {
-      margin-top: 1rem;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    /* ---------- projects ---------- */
-    .project {
-      display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-      gap: 2.5rem;
-      padding: 2.5rem 0;
-      border-top: 1px solid var(--border);
-      scroll-margin-top: calc(var(--nav-h) + 1rem);
-    }
-
-    .project:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    /* Project image: 1600px wide, cropped to 16:10 from the top-left. */
-    .shot {
       aspect-ratio: 16 / 10;
-      background: var(--plate);
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      border-bottom: 1px solid var(--border);
+      background: #0f0f0f;
       overflow: hidden;
-      display: grid;
-      place-items: center;
     }
 
-    .shot img {
+    .project-shot img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top left;
-      display: block;
     }
 
-    .project h3 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-
-    .project .what {
-      margin-top: 0.5rem;
-      font-size: 1.0625rem;
-    }
-
-    .project ul.results {
-      margin-top: 1rem;
-      padding-left: 1.1rem;
-      color: var(--text);
-    }
-
-    .project ul.results li {
-      margin-top: 0.35rem;
-    }
-
-    .project ul.results li::marker {
-      color: var(--accent);
-    }
-
-    .project .stack {
-      margin-top: 1rem;
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-
-    .project .links {
-      margin-top: 1.25rem;
+    .project-title {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
-      font-weight: 600;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
 
-    /* ---------- more projects ---------- */
-    .more {
-      margin-top: 3rem;
-    }
-
-    .more h3 {
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .more ul {
-      list-style: none;
-      border-top: 1px solid var(--border);
-    }
-
-    .more li {
-      display: grid;
-      grid-template-columns: 11rem minmax(0, 1fr) auto;
-      gap: 1rem;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: baseline;
-      scroll-margin-top: calc(var(--nav-h) + 1rem);
-    }
-
-    .more .name {
-      font-weight: 700;
-    }
-
-    .more .desc {
+    .live {
+      font-size: 0.6875rem;
+      font-weight: 500;
       color: var(--muted);
-      font-size: 0.9375rem;
-    }
-
-    .more .stack {
-      display: block;
-      font-size: 0.8125rem;
-      margin-top: 0.15rem;
-    }
-
-    .more .links {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.9375rem;
-      font-weight: 600;
       white-space: nowrap;
     }
 
-    /* ---------- experience / education ---------- */
-    .timeline {
-      list-style: none;
-      max-width: 52rem;
+    .live::before {
+      content: "\25CF";
+      color: #4ade80;
+      margin-right: 0.3rem;
+      font-size: 0.6rem;
+      vertical-align: 0.1em;
     }
 
-    .timeline>li {
-      display: grid;
-      grid-template-columns: 10rem 2.75rem minmax(0, 1fr);
-      gap: 1rem;
-      padding: 1.25rem 0;
-      border-top: 1px solid var(--border);
+    .project-content .metric {
+      color: var(--text);
+      font-size: 0.8125rem;
+      font-variant-numeric: tabular-nums;
     }
 
-    .timeline>li:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .timeline time {
+    .more-title {
+      font-size: 0.875rem;
+      font-weight: 600;
       color: var(--muted);
-      font-size: 0.9375rem;
-      padding-top: 0.15rem;
+      margin: 1.5rem 0 0.75rem;
     }
 
-    .logo {
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 6px;
-      object-fit: contain;
-      background: #fff;
-      border: 1px solid var(--border);
-      padding: 0.2rem;
-    }
-
-    .timeline h3 {
-      font-size: 1.125rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    .timeline .title {
-      color: var(--muted);
+    .projects.more .project-content h3 {
       font-size: 0.9375rem;
     }
 
-    .timeline .desc {
-      margin-top: 0.5rem;
-      max-width: var(--measure);
+    .projects.more .project-content p {
+      font-size: 0.8125rem;
     }
 
-    /* ---------- skills ---------- */
-    .skills {
-      display: grid;
-      grid-template-columns: 12rem minmax(0, 1fr);
-      max-width: 52rem;
+    .research-note {
+      font-size: 0.8125rem;
+      margin: 1rem 0 0;
     }
 
-    .skills dt,
-    .skills dd {
-      padding: 0.6rem 0;
-      border-top: 1px solid var(--border);
+    .research-note a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
     }
 
-    .skills dt {
+    .research-note a:hover {
+      border-bottom-color: var(--text);
+    }
+
+    .project-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      flex: 1;
+    }
+
+    .project-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .project-content p {
+      font-size: 0.875rem;
       color: var(--muted);
-      font-size: 0.9375rem;
+      margin: 0;
     }
 
-    /* ---------- contact ---------- */
-    .contact h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-    }
-
-    .contact p {
-      margin-top: 0.75rem;
-      color: var(--muted);
-      font-size: 1.125rem;
-    }
-
-    .contact .email {
-      display: inline-block;
-      margin-top: 1.5rem;
-      font-size: clamp(1.125rem, 3vw, 1.5rem);
-      font-weight: 700;
-      word-break: break-all;
-    }
-
-    .contact .elsewhere {
-      margin-top: 1.5rem;
+    .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem 1.5rem;
+      gap: 0.25rem;
+      padding: 0 1rem 1rem;
+      margin-top: auto;
+    }
+
+    /* Cards with a live demo carry two links, so the whole tile can no longer be
+       one anchor. Tighten the tag row above them and give the links their own. */
+    .project-tags:has(+ .project-links) {
+      padding-bottom: 0.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.875rem;
+      padding: 0 1rem 1rem;
+      font-size: 0.8125rem;
+    }
+
+    .project-links a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.15s;
+    }
+
+    .project-links a:hover {
+      border-bottom-color: var(--text);
+    }
+
+    .project-tag {
+      display: inline-flex;
+      padding: 0.125rem 0.5rem;
+      font-size: 10px;
       font-weight: 600;
+      font-family: 'Monaco', monospace;
+      border-radius: calc(0.5rem - 2px);
+      border: 1px solid transparent;
+      background: var(--border);
+      color: var(--text);
+      transition: background 0.15s;
     }
 
-    footer {
-      padding: 2rem 0 3rem;
-      color: var(--muted);
+    .project-tag:hover {
+      background: #333;
+    }
+
+    .contact-section {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .contact-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
       font-size: 0.875rem;
+      border-radius: 0.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      margin-bottom: 0.75rem;
     }
 
-    /* ---------- tablet / phone ---------- */
-    @media (max-width: 860px) {
-      .project {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.25rem;
+    .contact-section h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-section p {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 2.5rem;
+      padding: 0 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: calc(0.5rem - 2px);
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      transition: all 0.15s;
+    }
+
+    .email-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Dock Navigation */
+    .dock {
+      position: fixed;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3.5rem;
+      pointer-events: none;
+    }
+
+    .dock-bg {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4rem;
+      width: 100%;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+    }
+
+    .dock-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 100%;
+      height: 100%;
+      padding: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.5);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
+      pointer-events: auto;
+      gap: 0.25rem;
+    }
+
+    .dock-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: var(--text);
+      transform-origin: bottom;
+    }
+
+    button.dock-item {
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 1.125rem;
+    }
+
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      .dock-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-8px) scale(1.3);
       }
 
-      .ledger li {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0.15rem;
+      /* Adjacent sibling scaling for dock expansion effect */
+      .dock-item:hover+.dock-item,
+      .dock-item:has(+ .dock-item:hover) {
+        transform: translateY(-4px) scale(1.15);
       }
 
-      .more li {
-        grid-template-columns: minmax(0, 1fr) auto;
+      .dock-item:hover+.dock-item+.dock-item,
+      .dock-item:has(+ .dock-item + .dock-item:hover) {
+        transform: translateY(-2px) scale(1.05);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      section {
+        animation: none;
+        opacity: 1;
       }
 
-      .more .desc {
-        grid-column: 1 / -1;
-        grid-row: 2;
+      html {
+        scroll-behavior: auto;
       }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .dock-item svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 1.5rem;
+      background: var(--border);
+      margin: 0 0.5rem;
+      flex-shrink: 0;
     }
 
     @media (max-width: 640px) {
-      .wrap {
-        padding: 0 1rem;
+      main {
+        padding: 3rem 1rem 2rem;
       }
 
-      .bar .wrap {
-        gap: 0.75rem;
-      }
-
-      .bar nav {
-        gap: 0.9rem;
-        font-size: 0.875rem;
-      }
-
-      .bar .ask {
-        display: none;
-      }
-
-      .hero {
-        padding: 2.5rem 0 2rem;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 1rem;
+      .hero-text h1 {
+        font-size: 2rem;
       }
 
       .avatar {
-        width: 4.5rem;
-        height: 4.5rem;
+        width: 5rem;
+        height: 5rem;
+        font-size: 1.75rem;
       }
 
-      .ledger .claim {
-        font-size: 1.0625rem;
+      .contact-section h2 {
+        font-size: 2rem;
       }
 
-      .section {
-        padding: 2.5rem 0;
+      .contact-section p {
+        font-size: 1rem;
       }
 
-      .timeline>li {
-        grid-template-columns: 2.75rem minmax(0, 1fr);
-        gap: 0.25rem 0.875rem;
+      /* Ten 44px icons run past a phone screen, so the phone dock keeps the seven
+         that matter and leaves each one a full 44px tap target. */
+      .dock {
+        height: 3.25rem;
       }
 
-      .timeline time {
-        grid-column: 2;
-        grid-row: 2;
-        padding: 0;
-        font-size: 0.875rem;
+      .dock-container {
+        gap: 0;
+        padding: 0.25rem;
       }
 
-      .timeline .body {
-        display: contents;
+      .dock-item {
+        width: 2.75rem;
+        height: 2.75rem;
       }
 
-      .timeline .body>h3 {
-        grid-column: 2;
-        grid-row: 1;
-        align-self: center;
+      .dock-item.wide-only {
+        display: none;
       }
 
-      .timeline .body>.title,
-      .timeline .body>.desc {
-        grid-column: 1 / -1;
+      .dock-item svg {
+        width: 1.125rem;
+        height: 1.125rem;
       }
 
-      .skills {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .skills dd {
-        border-top: 0;
-        padding-top: 0;
+      .dock-divider {
+        margin: 0 0.25rem;
       }
     }
 
-    @media (max-width: 360px) {
-      .bar nav a.opt {
-        display: none;
-      }
+    .lang-switch {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .lang-switch button {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      border: 0;
+      background: none;
+      font: inherit;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+
+    .lang-switch button:hover,
+    .lang-switch button[aria-pressed="true"] {
+      color: var(--text);
+    }
+
+    .lang-switch button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: -6px;
+      border-radius: 0.5rem;
     }
   </style>
 </head>
 
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="fr" aria-pressed="false" lang="fr">FR</button></div>
+  <main>
 
-  <header class="bar">
-    <div class="wrap">
-      <a class="home" href="#hero">Karthik</a>
-      <nav aria-label="Sections">
-        <a href="#projects">Projects</a>
-        <a href="#work">Work</a>
-        <a href="research.html">Research</a>
-        <a class="opt" href="Resume.pdf" download>CV</a>
-      </nav>
-      <button id="concierge-trigger" class="ask" data-concierge type="button">Ask my AI</button>
-    </div>
-  </header>
-
-  <main id="main">
-
-    <!-- Hero -->
-    <section id="hero" class="wrap">
+    <!-- Hero Section -->
+    <section id="hero">
       <div class="hero">
-        <div>
-          <h1>Karthik</h1>
-          <p class="role">AI Engineer in Paris, building LLM and agentic systems.</p>
-          <p class="age"><span id="age">23</span> years old</p>
-          <div class="actions">
-            <a class="link" href="Resume.pdf" download>Download CV (PDF)</a>
-            <a class="link" href="https://github.com/kikugo" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="link" href="https://www.linkedin.com/in/ckarthikr" target="_blank"
-              rel="noopener noreferrer">LinkedIn</a>
-            <button class="ask" data-concierge type="button">Ask my AI about me</button>
-          </div>
-        </div>
-        <div class="avatar"><img src="images/avatar-1.jpg" alt="Karthik" width="272" height="272"></div>
-      </div>
-    </section>
-
-    <!-- Results ledger: one line per project, linking to its write-up below. -->
-    <section class="wrap ledger" aria-labelledby="ledger-h">
-      <h2 id="ledger-h">What the projects measured</h2>
-      <ol>
-        <li>
-          <a href="#proj-droit-du-travail-copilot">Droit du Travail Copilot</a>
-          <p class="claim"><b>98%</b> of answers cite a correct article
-            <small>on 100 model-reviewed questions, with 2% false refusals</small></p>
-        </li>
-        <li>
-          <a href="#proj-reel-history">Reel History</a>
-          <p class="claim">AWQ gives <b>2.8×</b> throughput and <b>9.6 GiB</b> less weight memory than BF16
-            <small>self-quantized Qwen3-8B explainer</small></p>
-        </li>
-        <li>
-          <a href="#proj-unified-rag">Unified RAG</a>
-          <p class="claim">hit@1 raised from <b>0.59</b> to <b>0.70</b>
-            <small>hybrid BM25 + dense with reranking, on a 100-question golden set</small></p>
-        </li>
-        <li>
-          <a href="#proj-agentops-harness">AgentOps Harness</a>
-          <p class="claim">False refusals halved, <b>4.7%</b> to <b>2.4%</b>
-            <small>without lowering attack success; 72 attacks across 6 OWASP LLM categories</small></p>
-        </li>
-        <li>
-          <a href="#proj-paris-bike-forecasting">Paris Bike Forecasting</a>
-          <p class="claim">LightGBM beats seasonal-naive by <b>16.5%</b> MAE
-            <small>over 8 rolling folds, with 79% coverage for 80% intervals</small></p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="wrap">
-        <h2>About</h2>
-        <div class="prose">
+        <div class="hero-text">
+          <h1>hi, karthik here</h1>
           <p>
-            I'm doing my M.Sc. in AI Systems at EPITA, Paris. Before this I spent about three years building
-            production LLM and machine learning systems at startups.
+            <span class="age" id="age">23</span> <span data-i18n>y/o AI Engineer in Paris building LLM and agentic systems</span>
           </p>
-          <p>
-            At Aspireit I was the founding AI engineer on a small team, so the core architecture calls on the
-            recruitment backend were mine: orchestration, APIs, data pipelines. These days most of what I build
-            sits around large language models, mainly RAG and agentic systems.
-          </p>
+          <button class="concierge-link" data-concierge type="button">
+            ask my ai about me <span class="concierge-arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+        <div class="avatar"><img id="avatar" alt="Karthik" width="272" height="272" fetchpriority="high"><script>
+            document.getElementById('avatar').src = 'images/avatar-' + (1 + Math.floor(Math.random() * 7)) + '.jpg';
+          </script><noscript><img src="images/avatar-1.jpg" alt="Karthik" width="272" height="272"></noscript></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>about</h2>
+      <p>
+        I'm doing my M.Sc. in AI Systems at EPITA, Paris. Before this I spent about three years building
+        production LLM and machine learning systems at startups.
+      </p>
+      <p>
+        At Aspireit I was the founding AI engineer on a small team, so the core architecture calls on the
+        recruitment backend were mine: orchestration, APIs, data pipelines. These days most of what I build
+        sits around large language models, mainly RAG and agentic systems.
+      </p>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="work">
+      <h2>work experience</h2>
+
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-header-left">
+            <img src="images/logos/primeloop.webp" alt="" class="company-logo" width="40" height="40">
+            <h3>PrimeloopAI</h3>
+          </div>
+          <time>Apr 2025 - Jun 2025</time>
+        </div>
+        <div class="work-title">AI Automation Specialist</div>
+        <div class="work-desc">
+          Built AI automation pipelines for multiple clients, cutting manual steps out of their data and operations work.
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-header-left">
+            <img src="images/logos/aspireit.webp" alt="" class="company-logo" width="40" height="40" loading="lazy">
+            <h3>Aspireit</h3>
+          </div>
+          <time>Apr 2024 - Apr 2025</time>
+        </div>
+        <div class="work-title">Founding AI Engineer</div>
+        <div class="work-desc">
+          Built the recruitment platform's AI backend as the main developer on a small team. Up-front candidate
+          signal let recruiters skip most of the screening funnel, cutting time-to-hire around 30%.
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-header-left">
+            <img src="images/logos/micro1.webp" alt="" class="company-logo" width="40" height="40" loading="lazy">
+            <h3>micro1</h3>
+          </div>
+          <time>Mar 2024 - Apr 2024</time>
+        </div>
+        <div class="work-title">Software Engineer - AI/ML</div>
+        <div class="work-desc">
+          Trained and evaluated large language models on code generation, using RLHF and adversarial prompts
+          across Python, TypeScript, and Go.
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="wrap">
-        <h2>Projects</h2>
-
-        <article id="proj-droit-du-travail-copilot" class="project">
-          <figure class="shot"><img src="images/projects/droit-du-travail-copilot.webp" alt="Droit du Travail Copilot answering a labour-law question, with the cited articles shown as margin notes" width="1600" height="1075"
-              loading="lazy"></figure>
-          <div>
-            <h3>Droit du Travail Copilot</h3>
-            <p class="what">French labour-law agent on Azure AI Foundry.</p>
-            <ul class="results">
-              <li>On 100 model-reviewed questions, 98% of answers cite a correct article.</li>
-              <li>Every out-of-scope question is refused, and 2% are false refusals.</li>
-            </ul>
-            <p class="stack">Azure AI Foundry</p>
-            <p class="links">
-              <a class="link" href="https://ddt-api-57nmb.mangosand-3751fcc9.swedencentral.azurecontainerapps.io"
-                target="_blank" rel="noopener noreferrer">Live demo</a>
-              <a class="link" href="https://github.com/kikugo/droit-du-travail-copilot" target="_blank"
-                rel="noopener noreferrer">Code</a>
-            </p>
+    <!-- Education Section -->
+    <section id="education">
+      <h2>education</h2>
+      <div class="edu-item">
+        <div class="edu-header">
+          <div class="edu-header-left">
+            <img src="images/logos/epita.webp" alt="" class="school-logo" width="40" height="40" loading="lazy">
+            <h3>EPITA · Le Kremlin-Bicêtre, Paris, France</h3>
           </div>
-        </article>
-
-        <article id="proj-reel-history" class="project">
-          <figure class="shot"><img src="images/projects/reel-history.webp" alt="Reel History home page: a trending film marquee and a drop zone for a Letterboxd export" width="1600" height="1000"
-              loading="lazy"></figure>
-          <div>
-            <h3>Reel History</h3>
-            <p class="what">Film recommendations from your Letterboxd diary, over an 87,000-film catalog.</p>
-            <ul class="results">
-              <li>GRU4Rec + SBERT + LLaRA, with calibrated confidence.</li>
-              <li>Runs on Kubernetes (Helm, Terraform for AKS).</li>
-              <li>Self-quantized Qwen3-8B explainer: AWQ gives 2.8× throughput and 9.6 GiB less weight memory than
-                BF16.</li>
-            </ul>
-            <p class="stack">GRU4Rec, SBERT, LLaRA, Kubernetes, Helm, Terraform, AKS, Qwen3-8B, AWQ</p>
-            <p class="links">
-              <a class="link" href="https://huggingface.co/spaces/karthikcr/reel-history" target="_blank"
-                rel="noopener noreferrer">Live demo</a>
-              <a class="link" href="research.html">Research</a>
-              <a class="link" href="https://github.com/kikugo/reel-history-k8s" target="_blank"
-                rel="noopener noreferrer">Code</a>
-              <a class="link" href="https://huggingface.co/karthikcr" target="_blank"
-                rel="noopener noreferrer">Models</a>
-            </p>
+          <time>Sep 2025 - Present</time>
+        </div>
+        <div class="edu-degree">M.Sc. · Artificial Intelligence Systems</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-header">
+          <div class="edu-header-left">
+            <img src="images/logos/bvrit.webp" alt="" class="school-logo" width="40" height="40" loading="lazy">
+            <h3>Padmasri Dr. B. V. Raju Institute of Technology</h3>
           </div>
-        </article>
+          <time>2020 - 2024</time>
+        </div>
+        <div class="edu-degree">B.Tech · Electronics & Communication Engineering</div>
+      </div>
+    </section>
 
-        <article id="proj-unified-rag" class="project">
-          <figure class="shot"><img src="images/projects/unified-rag.webp" alt="Unified RAG app with a sidebar for adding PDFs, images, audio and video, and an empty library ready for sample charts" width="1600" height="1001"
-              loading="lazy"></figure>
-          <div>
-            <h3>Unified RAG</h3>
-            <p class="what">Multimodal RAG over text, images, audio, and video, with an eval harness and CI gate.</p>
-            <ul class="results">
-              <li>Hybrid BM25 + dense with reranking raised hit@1 from 0.59 to 0.70 on a 100-question golden set.</li>
-            </ul>
-            <p class="stack">Python, Gemini, ChromaDB, Streamlit</p>
-            <p class="links">
-              <a class="link" href="https://unified-rag.streamlit.app" target="_blank" rel="noopener noreferrer">Live
-                demo</a>
-              <a class="link" href="https://github.com/kikugo/unified-rag" target="_blank"
-                rel="noopener noreferrer">Code</a>
-            </p>
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>skills</h2>
+      <div class="skills">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Go</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">Django</span>
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">LangGraph</span>
+        <span class="skill-tag">CrewAI</span>
+        <span class="skill-tag">AutoGen</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Transformers</span>
+        <span class="skill-tag">Hugging Face</span>
+        <span class="skill-tag">Agno</span>
+        <span class="skill-tag">numpy</span>
+        <span class="skill-tag">pandas</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">GCP</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Airflow</span>
+        <span class="skill-tag">PySpark</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Neo4j</span>
+        <span class="skill-tag">Redis</span>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>projects</h2>
+      <div class="projects">
+        <div id="proj-droit-du-travail-copilot" class="project-card">
+          <div class="project-shot"><img src="images/projects/droit-du-travail-copilot-800.webp" srcset="images/projects/droit-du-travail-copilot-480.webp 480w, images/projects/droit-du-travail-copilot-800.webp 800w, images/projects/droit-du-travail-copilot.webp 1600w" sizes="(max-width: 640px) calc(100vw - 2rem), 330px" width="800" height="538" loading="lazy" decoding="async" alt="Droit du Travail Copilot answering a labour-law question, with the cited articles shown as margin notes"></div>
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://ddt-api-57nmb.mangosand-3751fcc9.swedencentral.azurecontainerapps.io" target="_blank" rel="noopener noreferrer">Droit du Travail Copilot</a></h3><span class="live">live</span></div>
+            <p>French labour-law agent on Azure AI Foundry.</p>
+            <p class="metric">98% of answers cite a correct article</p>
           </div>
-        </article>
-
-        <article id="proj-agentops-harness" class="project">
-          <figure class="shot"><img src="images/projects/agentops-harness.webp" alt="Chart of attacks blocked per OWASP LLM category with and without guardrails, and false refusals falling from 4.7% to 2.4%" width="1600" height="1000"
-              loading="lazy"></figure>
-          <div>
-            <h3>AgentOps Harness</h3>
-            <p class="what">Red-teams, guards and gates the Droit du Travail Copilot.</p>
-            <ul class="results">
-              <li>72 attacks across 6 OWASP LLM categories, in English and French.</li>
-              <li>Guardrails halved false refusals (4.7% to 2.4%) without lowering attack success.</li>
-            </ul>
-            <p class="stack">OWASP LLM categories, English and French</p>
-            <p class="links">
-              <a class="link" href="https://github.com/kikugo/agentops-harness" target="_blank"
-                rel="noopener noreferrer">Code</a>
-            </p>
+          <div class="project-tags"><span class="project-tag">Agent Framework</span><span class="project-tag">Azure AI Search</span><span class="project-tag">Terraform</span><span class="project-tag">Container Apps</span></div>
+          <div class="project-links"><a href="https://ddt-api-57nmb.mangosand-3751fcc9.swedencentral.azurecontainerapps.io" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="https://github.com/kikugo/droit-du-travail-copilot" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-reel-history" class="project-card">
+          <div class="project-shot"><img src="images/projects/reel-history-800.webp" srcset="images/projects/reel-history-480.webp 480w, images/projects/reel-history-800.webp 800w, images/projects/reel-history.webp 1600w" sizes="(max-width: 640px) calc(100vw - 2rem), 330px" width="800" height="500" loading="lazy" decoding="async" alt="Reel History home page: a trending film marquee and a drop zone for a Letterboxd export"></div>
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://huggingface.co/spaces/karthikcr/reel-history" target="_blank" rel="noopener noreferrer">Reel History</a></h3><span class="live">live</span></div>
+            <p>Film recommendations from your Letterboxd diary, over an 87,000-film catalog.</p>
+            <p class="metric">AWQ gives 2.8× throughput and 9.6 GiB less weight memory than BF16</p>
           </div>
-        </article>
-
-        <article id="proj-paris-bike-forecasting" class="project">
-          <figure class="shot"><img src="images/projects/paris-bike-forecasting.webp" alt="Chart of a 7-day hourly LightGBM forecast with its 80% interval against observed counts for one Paris counter" width="1600" height="1000"
-              loading="lazy"></figure>
-          <div>
-            <h3>Paris Bike Forecasting</h3>
-            <p class="what">Hourly forecasts for 95 Paris counters.</p>
-            <ul class="results">
-              <li>LightGBM beats seasonal-naive by 16.5% MAE over 8 rolling folds.</li>
-              <li>79% coverage for 80% intervals.</li>
-            </ul>
-            <p class="stack">LightGBM</p>
-            <p class="links">
-              <a class="link" href="https://github.com/kikugo/paris-bike-forecast" target="_blank"
-                rel="noopener noreferrer">Code</a>
-            </p>
+          <div class="project-tags"><span class="project-tag">GRU4Rec</span><span class="project-tag">SBERT</span><span class="project-tag">Kubernetes</span><span class="project-tag">AWQ</span></div>
+          <div class="project-links"><a href="https://huggingface.co/spaces/karthikcr/reel-history" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="research.html">Research</a>
+            <a href="https://github.com/kikugo/reel-history-k8s" target="_blank" rel="noopener noreferrer">Code</a>
+            <a href="https://huggingface.co/karthikcr" target="_blank" rel="noopener noreferrer">Models</a></div>
+        </div>
+        <div id="proj-unified-rag" class="project-card">
+          <div class="project-shot"><img src="images/projects/unified-rag-800.webp" srcset="images/projects/unified-rag-480.webp 480w, images/projects/unified-rag-800.webp 800w, images/projects/unified-rag.webp 1600w" sizes="(max-width: 640px) calc(100vw - 2rem), 330px" width="800" height="500" loading="lazy" decoding="async" alt="Unified RAG answering a question with numbered citations back to its source documents"></div>
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://unified-rag.streamlit.app" target="_blank" rel="noopener noreferrer">Unified RAG</a></h3><span class="live">live</span></div>
+            <p>Multimodal RAG over text, images, audio, and video, with an eval harness and CI gate.</p>
+            <p class="metric">hit@1 raised from 0.59 to 0.70</p>
           </div>
-        </article>
-
-        <article id="proj-medquery" class="project">
-          <figure class="shot"><img src="images/projects/medquery.webp" alt="Diagram of MedQuery: BM25 and FAISS retrieval merged with RRF, feeding four agents, plus an MCP server" width="1600" height="1000"
-              loading="lazy"></figure>
-          <div>
-            <h3>MedQuery</h3>
-            <p class="what">Medical Q&amp;A over drug guidelines.</p>
-            <ul class="results">
-              <li>Hybrid BM25 and FAISS retrieval with rank fusion.</li>
-              <li>A multi-agent pipeline behind an MCP server.</li>
-              <li>Prompts tracked against an eval set.</li>
-            </ul>
-            <p class="stack">Python, FAISS, BM25, MCP</p>
-            <p class="links">
-              <a class="link" href="https://github.com/kikugo/MedQuery" target="_blank"
-                rel="noopener noreferrer">Code</a>
-            </p>
+          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Gemini</span><span class="project-tag">ChromaDB</span><span class="project-tag">Streamlit</span></div>
+          <div class="project-links"><a href="https://unified-rag.streamlit.app" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="https://github.com/kikugo/unified-rag" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-agentops-harness" class="project-card">
+          <div class="project-shot"><img src="images/projects/agentops-harness-800.webp" srcset="images/projects/agentops-harness-480.webp 480w, images/projects/agentops-harness-800.webp 800w, images/projects/agentops-harness.webp 1600w" sizes="(max-width: 640px) calc(100vw - 2rem), 330px" width="800" height="500" loading="lazy" decoding="async" alt="Chart of attacks blocked per OWASP LLM category with and without guardrails, and false refusals falling from 4.7% to 2.4%"></div>
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://github.com/kikugo/agentops-harness" target="_blank" rel="noopener noreferrer">AgentOps Harness</a></h3></div>
+            <p>Red-teams, guards and gates the Droit du Travail Copilot.</p>
+            <p class="metric">False refusals halved, 4.7% to 2.4%</p>
           </div>
-        </article>
-
-        <div class="more">
-          <h3>More projects</h3>
-          <ul>
-            <li id="proj-cli-tower-defense">
-              <span class="name">CLI Tower Defense</span>
-              <span class="desc">Terminal game where two LLMs go head to head in real time, one placing towers, one
-                spawning enemies.<span class="stack">Go, OpenAI, Gemini</span></span>
-              <span class="links">
-                <a class="link" href="https://raw.githubusercontent.com/kikugo/cli-tower-defense/main/docs/demo.gif"
-                  target="_blank" rel="noopener noreferrer">Watch a match</a>
-                <a class="link" href="https://github.com/kikugo/cli-tower-defense" target="_blank"
-                  rel="noopener noreferrer">Code</a>
-              </span>
-            </li>
-            <li id="proj-videosense">
-              <span class="name">VideoSense</span>
-              <span class="desc">Search inside a video with plain language. Indexes frames and transcripts, then
-                jumps you to the matching moment.<span class="stack">Python, Gemini, Qdrant, ffmpeg</span></span>
-              <span class="links">
-                <a class="link" href="https://videosense.streamlit.app/" target="_blank" rel="noopener noreferrer">Live
-                  demo</a>
-                <a class="link" href="https://github.com/kikugo/VideoSense" target="_blank"
-                  rel="noopener noreferrer">Code</a>
-              </span>
-            </li>
-            <li id="proj-nutrilive">
-              <span class="name">NutriLive</span>
-              <span class="desc">Realtime nutrition tracking. A FastAPI and WebSocket backend streams to a React
-                frontend.<span class="stack">FastAPI, WebSocket, React, Gemini</span></span>
-              <span class="links">
-                <a class="link" href="https://github.com/kikugo/NutriLive" target="_blank"
-                  rel="noopener noreferrer">Code</a>
-              </span>
-            </li>
-            <li id="proj-menu-vision">
-              <span class="name">Menu Vision</span>
-              <span class="desc">Turns a menu photo into a browsable, photo-rich version with a dietary chatbot on
-                top.<span class="stack">Python, Gemini, Gemini Image, Streamlit</span></span>
-              <span class="links">
-                <a class="link" href="https://menu-vision-ai.streamlit.app/" target="_blank"
-                  rel="noopener noreferrer">Live demo</a>
-                <a class="link" href="https://github.com/kikugo/menu-vision" target="_blank"
-                  rel="noopener noreferrer">Code</a>
-              </span>
-            </li>
-          </ul>
+          <div class="project-tags"><span class="project-tag">garak</span><span class="project-tag">PyRIT</span><span class="project-tag">Presidio</span><span class="project-tag">Langfuse</span></div>
+          <div class="project-links"><a href="https://github.com/kikugo/agentops-harness" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-paris-bike-forecasting" class="project-card">
+          <div class="project-shot"><img src="images/projects/paris-bike-forecasting-800.webp" srcset="images/projects/paris-bike-forecasting-480.webp 480w, images/projects/paris-bike-forecasting-800.webp 800w, images/projects/paris-bike-forecasting.webp 1600w" sizes="(max-width: 640px) calc(100vw - 2rem), 330px" width="800" height="500" loading="lazy" decoding="async" alt="Chart of a 7-day hourly LightGBM forecast with its 80% interval against observed counts for one Paris counter"></div>
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://github.com/kikugo/paris-bike-forecast" target="_blank" rel="noopener noreferrer">Paris Bike Forecasting</a></h3></div>
+            <p>Hourly forecasts for 95 Paris counters.</p>
+            <p class="metric">−16.5% MAE vs seasonal-naive, 79% coverage for 80% intervals</p>
+          </div>
+          <div class="project-tags"><span class="project-tag">Airflow</span><span class="project-tag">LightGBM</span><span class="project-tag">MLflow</span><span class="project-tag">Grafana</span></div>
+          <div class="project-links"><a href="https://github.com/kikugo/paris-bike-forecast" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-medquery" class="project-card">
+          <div class="project-shot"><img src="images/projects/medquery-800.webp" srcset="images/projects/medquery-480.webp 480w, images/projects/medquery-800.webp 800w, images/projects/medquery.webp 1600w" sizes="(max-width: 640px) calc(100vw - 2rem), 330px" width="800" height="500" loading="lazy" decoding="async" alt="Diagram of MedQuery: BM25 and FAISS retrieval merged with RRF, feeding four agents, plus an MCP server"></div>
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://github.com/kikugo/MedQuery" target="_blank" rel="noopener noreferrer">MedQuery</a></h3></div>
+            <p>Medical Q&amp;A over drug guidelines, with hybrid BM25 and FAISS retrieval and a multi-agent pipeline behind an MCP server.</p>
+          </div>
+          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">FAISS</span><span class="project-tag">BM25</span><span class="project-tag">MCP</span></div>
+          <div class="project-links"><a href="https://github.com/kikugo/MedQuery" target="_blank" rel="noopener noreferrer">Code</a></div>
         </div>
       </div>
+
+      <h3 class="more-title">more projects</h3>
+      <div class="projects more">
+        <div id="proj-cli-tower-defense" class="project-card">
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://github.com/kikugo/cli-tower-defense" target="_blank" rel="noopener noreferrer">CLI Tower Defense</a></h3></div>
+            <p>Terminal game where two LLMs go head to head, one placing towers, one spawning enemies.</p>
+          </div>
+          <div class="project-tags"><span class="project-tag">Go</span><span class="project-tag">OpenAI</span><span class="project-tag">Gemini</span></div>
+          <div class="project-links"><a href="https://raw.githubusercontent.com/kikugo/cli-tower-defense/main/docs/demo.gif" target="_blank" rel="noopener noreferrer">Watch a match</a>
+            <a href="https://github.com/kikugo/cli-tower-defense" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-videosense" class="project-card">
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://videosense.streamlit.app/" target="_blank" rel="noopener noreferrer">VideoSense</a></h3></div>
+            <p>Search inside a video with plain language and jump to the matching moment.</p>
+          </div>
+          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Gemini</span><span class="project-tag">Qdrant</span><span class="project-tag">ffmpeg</span></div>
+          <div class="project-links"><a href="https://videosense.streamlit.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="https://github.com/kikugo/VideoSense" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-nutrilive" class="project-card">
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://github.com/kikugo/NutriLive" target="_blank" rel="noopener noreferrer">NutriLive</a></h3></div>
+            <p>Realtime nutrition tracking. A FastAPI and WebSocket backend streams to a React frontend.</p>
+          </div>
+          <div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">WebSocket</span><span class="project-tag">React</span><span class="project-tag">Gemini</span></div>
+          <div class="project-links"><a href="https://github.com/kikugo/NutriLive" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+        <div id="proj-menu-vision" class="project-card">
+          <div class="project-content">
+            <div class="project-title"><h3><a href="https://menu-vision-ai.streamlit.app/" target="_blank" rel="noopener noreferrer">Menu Vision</a></h3></div>
+            <p>Turns a menu photo into a browsable, photo-rich version with a dietary chatbot on top.</p>
+          </div>
+          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Gemini</span><span class="project-tag">Streamlit</span></div>
+          <div class="project-links"><a href="https://menu-vision-ai.streamlit.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+            <a href="https://github.com/kikugo/menu-vision" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div>
+      </div>
+      <p class="research-note">The thesis results behind Reel History are on <a href="research.html">the research page</a>.</p>
     </section>
 
-    <!-- Experience -->
-    <section id="work" class="section">
-      <div class="wrap">
-        <h2>Work experience</h2>
-        <ol class="timeline">
-          <li>
-            <time>Apr 2025 - Jun 2025</time>
-            <img src="images/primeloop.jpg" alt="" class="logo" width="44" height="44">
-            <div class="body">
-              <h3>PrimeloopAI</h3>
-              <p class="title">AI Automation Specialist</p>
-              <p class="desc">Built AI automation pipelines for multiple clients, cutting manual steps out of their
-                data and operations work.</p>
-            </div>
-          </li>
-          <li>
-            <time>Apr 2024 - Apr 2025</time>
-            <img
-              src="https://media.licdn.com/dms/image/v2/D4D0BAQEuxA44X5L15g/company-logo_200_200/B4DZlJYVLPH4AM-/0/1757872739941/aspireai_official_logo?e=2147483647&v=beta&t=_q27JDWMZ7lmdq82QIS36PJAjOb1qR7ghvCvboRQuak"
-              alt="" class="logo" width="44" height="44">
-            <div class="body">
-              <h3>Aspireit</h3>
-              <p class="title">Founding AI Engineer</p>
-              <p class="desc">Built the recruitment platform's AI backend as the main developer on a small team.
-                Up-front candidate signal let recruiters skip most of the screening funnel, cutting time-to-hire
-                around 30%.</p>
-            </div>
-          </li>
-          <li>
-            <time>Mar 2024 - Apr 2024</time>
-            <img
-              src="https://media.licdn.com/dms/image/v2/D560BAQFSp7eWinmffw/company-logo_200_200/B56Zk8u8FtHcAI-/0/1757660562030/micro1_logo?e=2147483647&v=beta&t=DOwUbA4KC7TvMG-L5pGi1fXkdrpv2zGQSeZ9MpZTzmg"
-              alt="" class="logo" width="44" height="44">
-            <div class="body">
-              <h3>micro1</h3>
-              <p class="title">Software Engineer - AI/ML</p>
-              <p class="desc">Trained and evaluated large language models on code generation, using RLHF and
-                adversarial prompts across Python, TypeScript, and Go.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education" class="section">
-      <div class="wrap">
-        <h2>Education</h2>
-        <ol class="timeline">
-          <li>
-            <time>Sep 2025 - Present</time>
-            <img
-              src="https://media.licdn.com/dms/image/v2/C4E0BAQGJssipFvd7IA/company-logo_200_200/company-logo_200_200/0/1631350838145?e=2147483647&v=beta&t=_qdmvsmLJczXfCRGr9Vj3jlMoAZLerHGrkIPP7NhXl4"
-              alt="" class="logo" width="44" height="44">
-            <div class="body">
-              <h3>EPITA, Le Kremlin-Bicêtre, Paris, France</h3>
-              <p class="title">M.Sc., Artificial Intelligence Systems</p>
-            </div>
-          </li>
-          <li>
-            <time>2020 - 2024</time>
-            <img
-              src="https://media.licdn.com/dms/image/v2/D560BAQEcL9OvytcVvQ/company-logo_200_200/company-logo_200_200/0/1664451370985/bv_raju_institute_of_technology_bvrit__logo?e=2147483647&v=beta&t=51JUtVMXFNxkE0OWwQjE1v_1gwxanec1iCjLiK_uky8"
-              alt="" class="logo" width="44" height="44">
-            <div class="body">
-              <h3>Padmasri Dr. B. V. Raju Institute of Technology</h3>
-              <p class="title">B.Tech, Electronics &amp; Communication Engineering</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <div class="wrap">
-        <h2>Skills</h2>
-        <dl class="skills">
-          <dt>Languages</dt>
-          <dd>Python, Go, TypeScript, JavaScript</dd>
-          <dt>LLMs and agents</dt>
-          <dd>LangChain, LangGraph, CrewAI, AutoGen, Agno, Transformers, Hugging Face</dd>
-          <dt>Machine learning</dt>
-          <dd>PyTorch, TensorFlow, numpy, pandas</dd>
-          <dt>Backend</dt>
-          <dd>FastAPI, Flask, Django</dd>
-          <dt>Data</dt>
-          <dd>Airflow, PySpark, PostgreSQL, MongoDB, MySQL, Neo4j, Redis</dd>
-          <dt>Cloud and tools</dt>
-          <dd>Docker, AWS, GCP, Git</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section contact">
-      <div class="wrap">
-        <h2>Get in touch</h2>
-        <p>Interested in collaborating? Feel free to reach out.</p>
-        <a class="email link" href="mailto:karthikchangal39@gmail.com">karthikchangal39@gmail.com</a>
-        <p class="elsewhere">
-          <a class="link" href="https://github.com/kikugo" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="link" href="https://www.linkedin.com/in/ckarthikr" target="_blank"
-            rel="noopener noreferrer">LinkedIn</a>
-          <a class="link" href="https://www.kaggle.com/kikugo" target="_blank" rel="noopener noreferrer">Kaggle</a>
-          <a class="link" href="Resume.pdf" download>CV (PDF)</a>
-        </p>
-      </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="contact-badge">Contact</div>
+      <h2>Get in Touch</h2>
+      <p>Interested in collaborating? Feel free to reach out.</p>
+      <a class="email-btn" href="mailto:karthikchangal39@gmail.com">
+        karthikchangal39@gmail.com
+      </a>
     </section>
 
   </main>
 
-  <footer>
-    <div class="wrap">Thesis results behind Reel History are on <a class="link" href="research.html">the research
-        page</a>.</div>
-  </footer>
+  <!-- Dock Navigation -->
+  <nav class="dock" aria-label="Site">
+    <div class="dock-bg"></div>
+    <div class="dock-container">
+
+      <a href="#hero" class="dock-item wide-only" title="Home" aria-label="Home">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+
+      <a href="#about" class="dock-item wide-only" title="About" aria-label="About">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4" />
+          <path d="M12 8h.01" />
+        </svg>
+      </a>
+
+      <a href="#work" class="dock-item" title="Experience" aria-label="Experience">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      </a>
+
+      <a href="research.html" class="dock-item" title="Research" aria-label="Research">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18" />
+          <path d="M7 16V11" />
+          <path d="M12 16V7" />
+          <path d="M17 16v-3" />
+        </svg>
+      </a>
+
+      <div class="dock-divider"></div>
+
+      <a href="https://github.com/kikugo" target="_blank" rel="noopener noreferrer" class="dock-item" title="GitHub" aria-label="GitHub">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+      </a>
+
+      <a href="https://www.linkedin.com/in/ckarthikr" target="_blank" rel="noopener noreferrer" class="dock-item" title="LinkedIn" aria-label="LinkedIn">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg>
+      </a>
+
+      <a href="https://www.kaggle.com/kikugo" target="_blank" rel="noopener noreferrer" class="dock-item wide-only" title="Kaggle" aria-label="Kaggle">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.071.312z" />
+        </svg>
+      </a>
+
+      <a href="mailto:karthikchangal39@gmail.com" class="dock-item" title="Email" aria-label="Email">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      </a>
+
+      <a href="Resume.pdf" download class="dock-item" title="Download CV" aria-label="Download CV">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      </a>
+
+      <button id="concierge-trigger" class="dock-item" type="button" title="Ask my AI about me" aria-label="Ask my AI about me" data-concierge><span aria-hidden="true">🤖</span></button>
+
+    </div>
+  </nav>
 
   <script>
-    // Age in years, live to nine decimals.
+    // Age in years, live. Only the birth month is known to the page (December 2002),
+    // so the count starts from the middle of that month.
     (function () {
       const el = document.getElementById('age');
       if (!el) return;
-      const birth = new Date('2002-12-25T00:00:00').getTime();
+      const birth = new Date(2002, 11, 16).getTime();
       const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
-      const tick = () => { el.textContent = ((Date.now() - birth) / msPerYear).toFixed(9); };
+      const age = () => (Date.now() - birth) / msPerYear;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        el.textContent = Math.floor(age());
+        return;
+      }
+      const tick = () => { el.textContent = age().toFixed(9); };
       tick();
-      setInterval(tick, 100);
+      setInterval(tick, 50);
     })();
 
-    // Pick one of the avatar photos at random.
-    (function () {
-      const img = document.querySelector('.avatar img');
-      if (!img) return;
-      const n = 1 + Math.floor(Math.random() * 7);
-      img.src = 'images/avatar-' + n + '.jpg';
-    })();
+    // Smooth scroll for in-page links.
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+      });
+    });
   </script>
 
   <script type="module" src="assistant/assistant.js"></script>
+  <script src="i18n.js"></script>
 </body>
 
 </html>
