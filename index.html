@@ -696,10 +696,45 @@
         margin: 0 0.25rem;
       }
     }
+
+    .lang-switch {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .lang-switch button {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      border: 0;
+      background: none;
+      font: inherit;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+
+    .lang-switch button:hover,
+    .lang-switch button[aria-pressed="true"] {
+      color: var(--text);
+    }
+
+    .lang-switch button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: -6px;
+      border-radius: 0.5rem;
+    }
   </style>
 </head>
 
 <body>
+  <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="fr" aria-pressed="false" lang="fr">FR</button></div>
   <main>
 
     <!-- Hero Section -->
@@ -708,7 +743,7 @@
         <div class="hero-text">
           <h1>hi, karthik here</h1>
           <p>
-            <span class="age" id="age">23</span> y/o AI Engineer in Paris building LLM and agentic systems
+            <span class="age" id="age">23</span> <span data-i18n>y/o AI Engineer in Paris building LLM and agentic systems</span>
           </p>
           <button class="concierge-link" data-concierge type="button">
             ask my ai about me <span class="concierge-arrow" aria-hidden="true">&rarr;</span>
@@ -1083,6 +1118,7 @@
   </script>
 
   <script type="module" src="assistant/assistant.js"></script>
+  <script src="i18n.js"></script>
 </body>
 
 </html>
