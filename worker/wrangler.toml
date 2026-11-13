@@ -3,12 +3,27 @@ main = "src/index.ts"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Created in a later task: `wrangler kv namespace create RATE_LIMIT`
-kv_namespaces = [
-  { binding = "RATE_LIMIT", id = "e6dbf059db894a1286215710df943567" }
-]
+# Daily rate-limit counters. One SQLite-backed Durable Object instance holds
+# them all so each check-and-increment is atomic.
+[[durable_objects.bindings]]
+name = "LIMITER"
+class_name = "RateLimiter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RateLimiter"]
 
 [vars]
-ALLOWED_ORIGINS = "https://kikugo.github.io,http://localhost:8000,http://127.0.0.1:8000"
+ALLOWED_ORIGINS = "https://kikugo.github.io"
 
 # GEMINI_API_KEY is a secret, set via: wrangler secret put GEMINI_API_KEY
+# For local runs put it in worker/.dev.vars (gitignored).
+
+# Local development only: `npm run dev` (wrangler dev --env dev).
+# Bindings are not inherited by environments, so the Durable Object is repeated.
+[env.dev]
+vars = { ALLOWED_ORIGINS = "http://localhost:8000,http://127.0.0.1:8000" }
+
+[[env.dev.durable_objects.bindings]]
+name = "LIMITER"
+class_name = "RateLimiter"
