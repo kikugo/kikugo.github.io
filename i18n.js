@@ -23,11 +23,11 @@
     'Apr 2024 - Apr 2025': 'avr. 2024 - avr. 2025',
     'Founding AI Engineer': 'Ingénieur IA fondateur',
     "Built the recruitment platform's AI backend as the main developer on a small team. Up-front candidate signal let recruiters skip most of the screening funnel, cutting time-to-hire around 30%.":
-      "J'ai construit le backend IA de la plateforme de recrutement, en tant que développeur principal d'une petite équipe. Des signaux sur les candidats disponibles dès le départ ont permis aux recruteurs d'éviter l'essentiel de la présélection, réduisant le délai d'embauche d'environ 30 %.",
+      "J'ai construit le backend IA de la plateforme de recrutement, en tant que développeur principal d'une petite équipe. Comme les recruteurs avaient dès le départ des indicateurs sur chaque candidat, ils sautaient l'essentiel de la présélection, et le délai d'embauche a baissé d'environ 30 %.",
     'Mar 2024 - Apr 2024': 'mars 2024 - avr. 2024',
     'Software Engineer - AI/ML': 'Ingénieur logiciel - IA/ML',
     'Trained and evaluated large language models on code generation, using RLHF and adversarial prompts across Python, TypeScript, and Go.':
-      'Entraînement et évaluation de grands modèles de langage pour la génération de code, avec RLHF et prompts adverses, en Python, TypeScript et Go.',
+      "J'ai entraîné et évalué de grands modèles de langage sur la génération de code, avec du RLHF et des prompts adverses, en Python, TypeScript et Go.",
     'education': 'formation',
     'EPITA · Le Kremlin-Bicêtre, Paris, France': 'EPITA · Le Kremlin-Bicêtre, Paris, France',
     'Sep 2025 - Present': "sept. 2025 - aujourd'hui",
@@ -47,7 +47,7 @@
     'Research': 'Recherche',
     'Models': 'Modèles',
     'Multimodal RAG over text, images, audio, and video, with an eval harness and CI gate.':
-      "RAG multimodal sur texte, images, audio et vidéo, avec un banc d'évaluation et une porte de CI.",
+      "RAG multimodal sur texte, images, audio et vidéo, avec un banc d'évaluation et un contrôle en CI.",
     'hit@1 raised from 0.59 to 0.70': 'hit@1 passé de 0,59 à 0,70',
     'Red-teams, guards and gates the Droit du Travail Copilot.': 'Attaque, protège et contrôle le Droit du Travail Copilot.',
     'False refusals halved, 4.7% to 2.4%': 'Faux refus divisés par deux, de 4,7 % à 2,4 %',
@@ -141,7 +141,7 @@
     'Reel History turns a Letterboxd export into film recommendations. It started as a three-person team MVP, I wrote most of its code, and I kept only what the evidence supported.':
       "Reel History transforme un export Letterboxd en recommandations de films. Le projet est parti d'un MVP à trois, j'en ai écrit l'essentiel du code, et je n'ai gardé que ce que les résultats justifiaient.",
     '<strong>A classical model does the ranking.</strong> GRU4Rec won every stratum, so it drives the feed for anyone with a real diary. Visitors with no history get popularity, and those with only a little get the content and collaborative retrievers.':
-      "<strong>Un modèle classique fait le classement.</strong> GRU4Rec gagne sur toutes les strates, il alimente donc le fil de quiconque a un vrai journal. Les visiteurs sans historique reçoivent la popularité, et ceux qui en ont peu, les retrievers de contenu et collaboratifs.",
+      "<strong>Un modèle classique fait le classement.</strong> GRU4Rec gagne sur toutes les strates, il alimente donc le fil de quiconque a un vrai journal. Les visiteurs sans historique reçoivent la popularité, et ceux qui en ont peu, la recherche par contenu et le filtrage collaboratif.",
     '<strong>No confidence number is shown raw.</strong> With an ECE near 0.40, a raw score would lie, so every card goes through isotonic calibration and shows a label: strong, good, worth a try, or low evidence.':
       "<strong>Aucun score de confiance n'est affiché brut.</strong> Avec une ECE proche de 0,40, un score brut mentirait : chaque carte passe par une calibration isotonique et affiche une étiquette : fort, bon, à essayer ou peu d'indices.",
     "<strong>Augmentation only where it held up.</strong> The deep-cuts end of the Rewind dial leans on LLaRA's collaborative embeddings, since the hybrid-ID model was the only method that kept signal on rare films.":
