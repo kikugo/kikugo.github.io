@@ -50,7 +50,7 @@
       "RAG multimodal sur texte, images, audio et vidéo, avec un banc d'évaluation et un contrôle en CI.",
     'hit@1 raised from 0.59 to 0.70': 'hit@1 passé de 0,59 à 0,70',
     'Red-teams, guards and gates the Droit du Travail Copilot.': 'Attaque, protège et contrôle le Droit du Travail Copilot.',
-    'False refusals halved, 4.7% to 2.4%': 'Faux refus divisés par deux, de 4,7 % à 2,4 %',
+    '1 of 71 attacks got through': '1 attaque sur 71 a réussi',
     'Hourly forecasts for 95 Paris counters.': 'Prévisions horaires pour 95 compteurs vélo parisiens.',
     '−16.5% MAE vs seasonal-naive, 79% coverage for 80% intervals':
       '−16,5 % de MAE face au naïf saisonnier, couverture de 79 % pour des intervalles à 80 %',
