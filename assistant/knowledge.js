@@ -142,16 +142,16 @@ export const PROFILE = {
       id: 'agentops-harness',
       title: 'AgentOps Harness',
       url: 'https://github.com/kikugo/agentops-harness',
-      tech: ['garak', 'PyRIT', 'NeMo Guardrails', 'Langfuse', 'OWASP LLM Top 10'],
+      tech: ['garak', 'PyRIT', 'Presidio', 'Langfuse', 'OWASP LLM Top 10'],
       blurb:
         'Red-teams, guards and gates the Droit du Travail Copilot. 72 attacks across 6 OWASP LLM ' +
-        'categories in English and French; guardrails halved false refusals (4.7% to 2.4%) without ' +
-        'lowering attack success.',
+        'categories in English and French; 1 of 71 scored attacks got through against the bare agent, ' +
+        'and the guardrails alone stop 15 of 72 when the agent obeys every attack.',
       details: [
-        'Attacks his own Copilot with garak and PyRIT through a small adapter that makes the agent look like any chat model, then adds NeMo Guardrails and measures attack success, false refusals and the latency cost of the rails.',
-        'The fixed attack suite gates pull requests, so a change that makes the agent easier to attack fails CI.',
+        'Attacks his own Copilot with garak and PyRIT through a small adapter that makes the agent look like any chat model, then adds regex and Presidio guardrails and measures attack success, false refusals and the latency cost of the rails.',
+        'Every pull request runs the attack suite offline through the real guardrails against a stub agent, so a change that weakens a rail fails CI.',
         'Every request is one trace in a self-hosted Langfuse, tagged with the attack id and campaign all the way down to each tool call and search query.',
-        'Honest result: the guardrails halved false refusals but did not lower attack success, and the README reports that plainly.',
+        'Honest result: the agent\'s own instructions did most of the work, the guardrails did not lower attack success, and the PII rail was garbling some correct answers until he fixed it. The README reports all of this.',
         'Every attack targets systems he owns, and the poisoned test documents live in a separate search index that the demo never uses.',
       ],
     },
